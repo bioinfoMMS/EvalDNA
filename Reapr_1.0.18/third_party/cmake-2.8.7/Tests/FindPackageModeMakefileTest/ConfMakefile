@@ -1,0 +1,10 @@
+all: clean pngtest
+
+main.o: main.cpp
+	"/usr/lib64/ccache/g++" $(CXXFLAGS) -c $(shell "/home/mmacd/bin/Reapr_1.0.18/third_party/cmake/bin/cmake" --find-package -DCMAKE_MODULE_PATH="/home/mmacd/bin/Reapr_1.0.18/third_party/cmake/Tests/FindPackageModeMakefileTest" -DNAME=Foo -DLANGUAGE=CXX -DCOMPILER_ID=GNU -DMODE=COMPILE) main.cpp
+
+pngtest: main.o
+	"/usr/lib64/ccache/g++" $(LDFLAGS) -o pngtest main.o $(shell "/home/mmacd/bin/Reapr_1.0.18/third_party/cmake/bin/cmake" --find-package -DCMAKE_MODULE_PATH="/home/mmacd/bin/Reapr_1.0.18/third_party/cmake/Tests/FindPackageModeMakefileTest" -DNAME=Foo -DLANGUAGE=CXX -DCOMPILER_ID=GNU -DMODE=LINK)
+
+clean:
+	rm -f *.o pngtest
