@@ -17,7 +17,7 @@
 
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
+<style type="text/css" data-origin="pandoc">
 a.sourceLine { display: inline-block; line-height: 1.25; }
 a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; position: absolute; }
@@ -81,7 +81,29 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
 </style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 
@@ -340,7 +362,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 </div>
 <div id="how-to-skip-steps" class="section level1">
 <h1>How To Skip Steps</h1>
-<p>As of version recipes 0.1.2, each step has an optional logical argument called <code>skip</code>. In almost every case, the default is <code>TRUE</code>. When using this option:</p>
+<p>As of version recipes 0.1.2, each step has an optional logical argument called <code>skip</code>. In almost every case, the default is <code>FALSE</code>. When using this option:</p>
 <ul>
 <li>No steps are skipped during <code>prep</code></li>
 <li>Steps with <code>skip = TRUE</code> are not applied to the data when <code>bake</code> is called</li>
@@ -368,7 +390,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <a class="sourceLine" id="cb1-15" data-line-number="15"><span class="co">#&gt; 4  0.268 -36.7</span></a>
 <a class="sourceLine" id="cb1-16" data-line-number="16"><span class="co">#&gt; 5  0.601  28.3</span></a>
 <a class="sourceLine" id="cb1-17" data-line-number="17"><span class="co">#&gt; 6  0.131 -41.7</span></a>
-<a class="sourceLine" id="cb1-18" data-line-number="18"><span class="kw">bake</span>(car_recipe, <span class="dt">newdata =</span> mtcars) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(disp, hp)</a>
+<a class="sourceLine" id="cb1-18" data-line-number="18"><span class="kw">bake</span>(car_recipe, <span class="dt">new_data =</span> mtcars) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(disp, hp)</a>
 <a class="sourceLine" id="cb1-19" data-line-number="19"><span class="co">#&gt; # A tibble: 6 x 2</span></a>
 <a class="sourceLine" id="cb1-20" data-line-number="20"><span class="co">#&gt;    disp    hp</span></a>
 <a class="sourceLine" id="cb1-21" data-line-number="21"><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt;</span></a>

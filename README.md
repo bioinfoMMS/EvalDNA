@@ -13,6 +13,8 @@ EvalDNA can be used locally by cloning this repository.
 The EvalDNA directory contains REAPR which is one of the tools EvalDNA executes. For REAPR to work, one must add the provided Perl libraries to the Perl path by using  the following command:
 	export PERL5LIB=/path/to/evalDNA/Reapr_1.0.18/File-Copy-Link-0.140/lib/
 
+R  statistical software is also required and needs to be accessible (i.e.  in  your  path)
+
 Usage
 ----------
 	python evalDNA.py -i <inputfile> -o <outputfile> -c <configfile>
@@ -20,7 +22,9 @@ Usage
 All three arguments are mandatory.  
 
 inputfile is the assembly fasta file
+
 outputfile is the prefix that will be used to name the output metrics file
+
 configfile is a config file of parameters (see config file section below) and where you provide the location of the sequencing reads
 
 
@@ -53,16 +57,20 @@ The values for the 'paired_end_reads_1' and 'paired_end_reads_2' parameters are 
 
 If the reads have already be mapped to the assembly of interest, one can set 'bam_file_provided' to yes and provide the BAM file path with the 'location_of_bam' parameter.
 
+If you want to use EvalDNA just to produce continuity metrics such as N50, total length etc., you cant set the 'runReapr' parameter to no. Note: To run the scoring model, running Reapr is required.
 
 Output of EvalDNA.py
 ----------
 
-prefix.metrics – list of basic metrics about the assemby
+prefix.metrics – list of basic metrics about the assembly
+
 prefix.facheck.info – information about what was changed to get the checked fasta file
+
 prefix.facheck.fa  - the checked fasta file
+
 prefix... - comma-separated list of quality metrics to be submitted to the scoring model
 
 
 Scoring the output
 ----------
-
+Once EvalDNA has finished and produced the training_metrics_prefix.csv file, you can submit the CSV file to an R script (.R file) that will apply a model designed in R (.rds file). We provide a well-tested model that was trained on mammalian genome assembly data. More details can be found in the EvalDNA paper once it is published.

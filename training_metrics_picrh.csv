@@ -1,0 +1,2 @@
+normN50, gap_perc, prop_pair_perc, FCD_err_in_contig, FCD_err_over_gap, low_fc_in_contig, low_fc_over_gap, links, clip, coll_repeat, low_read_cov, error_free_bases, norm_contig_num
+11.59417339722963, 0.10248237018127583, 94.76541598724101, 0.0, 0.0, 97.11819950942704, 0.06517770623744013, 0.04351132609721826, 0.0008082786344250065, 0.0070726598852316, 0.5527116120557116, 41.63, 0.2733840119572268
