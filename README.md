@@ -84,3 +84,16 @@ The following command can be used to run the provided model:
 	Rscript run_mammalian_model.R training_metrics_prefix.csv
 	
 More details on the model can be found in the EvalDNA manuscript once it is published.
+
+
+
+Optional: Creating your own model
+----------
+
+If you would like to create you own model, say on training data from plants rather than mammals, the metric calculation portion of EvalDNA can be used to collect quality metrics of the instances in the training data. We provide a bash script to score training instances as well which requires the assembly/assembled sequence of interest and a reference sequence. Further processing of the scores may need be required such as the scaling described in the EvalDNA publication.
+
+The following command can be used to score a training data instance:
+
+	bash score4evalDNA.sh -f assembly.fa -r assembly_ref.fa
+
+
