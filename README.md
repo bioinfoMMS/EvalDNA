@@ -13,7 +13,7 @@ EvalDNA can be used locally by cloning this repository.
 The EvalDNA directory contains REAPR which is one of the tools EvalDNA executes. For REAPR to work, one must add the provided Perl libraries to the Perl path by using  the following command:
 	export PERL5LIB=/path/to/evalDNA/Reapr_1.0.18/File-Copy-Link-0.140/lib/
 
-R  statistical software is also required and needs to be accessible (i.e.  in  your  path)
+R statistical software is also required and needs to be accessible (i.e.  in  your  path)
 
 Usage
 ----------
@@ -68,9 +68,9 @@ prefix.metrics – list of basic metrics about the assembly
 
 prefix.facheck.info – information about what was changed to get the checked fasta file
 
-prefix.facheck.fa  - the checked fasta file
+prefix.facheck.fa - the checked fasta file
 
-prefix... - comma-separated list of quality metrics to be submitted to the scoring model
+training_metrics_prefix.csv - comma-separated list of quality metrics to be submitted to the scoring model
 
 
 Scoring the output
