@@ -1,6 +1,6 @@
 # EvalDNA
 
-EvalDNA (Evaluation of De Novo Assemblies) uses machine-learning methods to integrate genome assembly quality metrics into a single comprehensive quality score.
+EvalDNA (Evaluation of *De Novo* Assemblies) uses machine-learning methods to integrate genome assembly quality metrics into a single comprehensive quality score.
 
 Prequisites
 ----------
@@ -8,7 +8,7 @@ EvalDNA requires Python v2.7.13, Perl v5.24.3 or later, and R statistical softwa
 
 Installation
 ----------
-EvalDNA is designed for an Unix/Linux environment and can be used by cloning this repository. 
+EvalDNA is designed to work in a Unix/Linux environment and can be used by cloning this repository. 
 
 The EvalDNA directory contains REAPR which is one of the tools EvalDNA executes. For REAPR to work, one must add the provided Perl libraries to the Perl path by using  the following command:
 	export PERL5LIB=/path/to/evalDNA/Reapr_1.0.18/File-Copy-Link-0.140/lib/
@@ -32,9 +32,9 @@ configfile is a config file of parameters (see config file section below) and wh
 Input
 ----------
 
-EvalDNA requires a fasta file containing the assembled sequence you want scored, paired-end sequencing reads either unmapped in fastaq format or mapped in BAM format. It also require a configuration file containing certain parameters including the location of the sequencing read fastq files or the BAM file.
+EvalDNA requires a FASTA file containing the assembled sequence you want scored, paired-end sequencing reads either unmapped in FASTQ format or mapped in BAM format. It also require a configuration file containing certain parameters such as the location of the sequencing read FASTQ files or the BAM file.
 
-Note: EvalDNA will not work if a single fasta sequence in the given fasta file is longer than 530 mbp due to the requirement of creating a TBI index for the file. We suggest splitting the fasta sequence to overcome this problem. Be aware this may cause a slight decrease in the quality score.
+Note: EvalDNA will not work if a single FASTA sequence in the given fasta file is longer than 530 mbp due to the requirement of creating a TBI index for the file. We suggest splitting the fasta sequence to overcome this problem. Be aware this may cause a slight decrease in the quality score.
 
 
 
@@ -53,7 +53,7 @@ An example config file is shown below.
 	paired_end_reads_2 = /path/to/paired/reads/reverse_reads_2.fq
 	sample_map_read_number = 50
 
-The values for the 'paired_end_reads_1' and 'paired_end_reads_2' parameters are the paths to the location of the paired-end sequencing reads to be used to evaluate the assembly quality. We recommend using 10x or more coverage of high quality reads (about 400-600 bp insert size) if using the provided model.
+The values for the 'paired_end_reads_1' and 'paired_end_reads_2' parameters are the paths to the location of the paired-end sequencing reads to be used to evaluate the assembly quality. We recommend using 10x or more coverage of high quality reads and the provided model requires paired-end reads that have an insert size of about 400-600 bp.
 
 If the reads have already be mapped to the assembly of interest, one can set 'bam_file_provided' to yes and provide the BAM file path with the 'location_of_bam' parameter.
 
@@ -66,9 +66,9 @@ Output of EvalDNA.py
 
 prefix.metrics – list of basic metrics about the assembly
 
-prefix.facheck.info – information about what was changed to get the checked fasta file
+prefix.facheck.info – information about what was changed to get the checked FASTA file
 
-prefix.facheck.fa - the checked fasta file
+prefix.facheck.fa - the checked FASTA file
 
 training_metrics_prefix.csv - comma-separated list of quality metrics to be submitted to the scoring model
 
