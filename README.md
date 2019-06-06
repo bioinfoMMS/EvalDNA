@@ -4,11 +4,11 @@ EvalDNA (Evaluation of De Novo Assemblies) uses machine-learning methods to inte
 
 Prequisites
 ----------
-EvalDNA requires Python v2.7.13 and R statistical software v3.5.1 or later. 
+EvalDNA requires Python v2.7.13, Perl v5.24.3 or later, and R statistical software v3.5.1 or later. 
 
 Installation
 ----------
-EvalDNA can be used locally by cloning this repository. 
+EvalDNA is designed for an Unix/Linux environment and can be used by cloning this repository. 
 
 The EvalDNA directory contains REAPR which is one of the tools EvalDNA executes. For REAPR to work, one must add the provided Perl libraries to the Perl path by using  the following command:
 	export PERL5LIB=/path/to/evalDNA/Reapr_1.0.18/File-Copy-Link-0.140/lib/
