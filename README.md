@@ -21,7 +21,7 @@ Usage
 
 All three arguments are mandatory.  
 
-inputfile is the assembly fasta file
+inputfile is the assembly FASTA file
 
 outputfile is the prefix that will be used to name the output metrics file
 
@@ -57,7 +57,7 @@ The values for the 'paired_end_reads_1' and 'paired_end_reads_2' parameters are 
 
 If the reads have already be mapped to the assembly of interest, one can set 'bam_file_provided' to yes and provide the BAM file path with the 'location_of_bam' parameter.
 
-If you want to use EvalDNA just to produce continuity metrics such as N50, total length etc., you cant set the 'runReapr' parameter to no. 
+If you want to use EvalDNA just to produce continuity metrics such as N50, total length etc., you can set the 'runReapr' parameter to no. 
 
 Note: To run the scoring model, running Reapr is required.
 
@@ -66,7 +66,7 @@ Output of EvalDNA.py
 
 prefix.metrics – list of basic metrics about the assembly
 
-prefix.facheck.info – information about what was changed to get the checked FASTA file
+prefix.facheck.info – information about what was changed to get the checked FASTA file (sometimes changes the format of the FASTA headers if they contain characters not accepted by REAPR)
 
 prefix.facheck.fa - the checked FASTA file
 
