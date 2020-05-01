@@ -27,13 +27,13 @@ Usage
 
 The current version of EvalDNA is listed in the EvalDNA_v1.1 directory.  
 
-Three subdirectories are provided named code, data, and results. These directories are mounted when running the Dockerfile so that any files in these folders can be accesssed by EvalDNA on a Docker instance.
+Two subdirectories are provided named code and data. Use the 'mkdir' command to create a directory with EvalDNA_v1.1 called 'results'. These directories are mounted when running the Dockerfile so that any files in these folders can be accesssed by EvalDNA on a Docker instance.
  
 The code directory contains the EvalDNA python script, the code for the R model, REAPR which is one of the tools EvalDNA executes, and the code to run the R model. 
 
 The data directory contains sample data to get started with EvalDNA as well as the config file required to run EvalDNA. 
 
-The results directory is empty and will be where the files produced by EvalDNA, including the final quality score output, will be saved as EvalDNA is running. If rerunning EvalDNA using the same prefix as a run before, make sure to remove existing files using that prefix from results including the 'prefix.pipeline' to avoid errors. 
+The results directory you created will be where the files produced by EvalDNA, including the final quality score output, will be saved as EvalDNA is running. If rerunning EvalDNA using the same prefix as a run before, make sure to remove existing files using that prefix from results including the 'prefix.pipeline' to avoid errors. 
 
 The Dockerfile is provided in the EvalDNA_v1.1 directory. Running this, installs all required prequisites and runs the EvalDNA python command within the 'code' directory. This command is listed in the 'CMD' line in the Dockerfile, which is the only line of the Dockerfile you will need to edit. 
 
