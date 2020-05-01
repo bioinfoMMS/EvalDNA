@@ -16,10 +16,10 @@ Building and Running Docker for EvalDNA
 ----------
 After editing the Dockerfile to provide your input into EvalDNA (explained below), run the following commands:
 
-cd EvalDNA_v1.1 
-sudo docker build -t evaldna_test . #builds Docker container called 'evaldna_test'
-sudo docker run -t -u $(id -u):$(id -g) -v /location/of/EvalDNAv1.1/results:/usr/src/app/results -v /location/of/EvalDNA_v1.1/code:/usr/src/app/code -v /location/of/EvalDNA_v1.1/data:/usr/src/app/data --name edtest -t --cpus="16" evaldna_test #runs the 'evaldna_test' Docker instance with 16 cpus and the three directories (code, data, and results) mounted.
-sudo docker container rm --force edtest #Removes the docker container when finished
+	cd EvalDNA_v1.1 
+	sudo docker build -t evaldna_test . #builds Docker container called 'evaldna_test'
+	sudo docker run -t -u $(id -u):$(id -g) -v /location/of/EvalDNAv1.1/results:/usr/src/app/results -v /location/of/EvalDNA_v1.1/code:/usr/src/app/code -v /location/of/EvalDNA_v1.1/data:/usr/src/app/data --name edtest -t --cpus="16" evaldna_test #runs the 'evaldna_test' Docker instance with 16 cpus and the three directories (code, data, and results) mounted.
+	sudo docker container rm --force edtest #Removes the docker container when finished
 
 
 Usage
@@ -126,11 +126,11 @@ Running Multiple Assemblies
 ----------
 Multiple runs of EvalDNA and the scoring model can be listed as one 'CMD' in the Dockerfile. For example:
 
-CMD cd code && \
-python EvalDNA_v1.1.py -i ../data/genome_assembly_1.fa -o genome1 -c ../data/config_genome1.txt && \
-Rscript run_mammalian_model_v1.1.R ../results/model_input_genome1.csv && \
-python EvalDNA_v1.1.py -i ../data/genome_assembly_2.fa -o genome2 -c ../data/config_genome2.txt && \
-Rscript run_mammalian_model_v1.1.R ../results/model_input_genome2.csv
+	CMD cd code && \
+	python EvalDNA_v1.1.py -i ../data/genome_assembly_1.fa -o genome1 -c ../data/config_genome1.txt && \
+	Rscript run_mammalian_model_v1.1.R ../results/model_input_genome1.csv && \
+	python EvalDNA_v1.1.py -i ../data/genome_assembly_2.fa -o genome2 -c ../data/config_genome2.txt && \
+	Rscript run_mammalian_model_v1.1.R ../results/model_input_genome2.csv
 
 
 Optional: Creating your own model
