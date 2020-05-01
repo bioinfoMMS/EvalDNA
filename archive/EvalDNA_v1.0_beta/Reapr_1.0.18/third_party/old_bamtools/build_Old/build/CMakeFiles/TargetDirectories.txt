@@ -1,8 +1,0 @@
-/home/mmacd/bin/Reapr_1.0.18/third_party/bamtools/build/src/api/CMakeFiles/APIHeaders.dir
-/home/mmacd/bin/Reapr_1.0.18/third_party/bamtools/build/src/api/CMakeFiles/AlgorithmsHeaders.dir
-/home/mmacd/bin/Reapr_1.0.18/third_party/bamtools/build/src/api/CMakeFiles/BamTools.dir
-/home/mmacd/bin/Reapr_1.0.18/third_party/bamtools/build/src/api/CMakeFiles/BamTools-static.dir
-/home/mmacd/bin/Reapr_1.0.18/third_party/bamtools/build/src/utils/CMakeFiles/BamTools-utils.dir
-/home/mmacd/bin/Reapr_1.0.18/third_party/bamtools/build/src/CMakeFiles/SharedHeaders.dir
-/home/mmacd/bin/Reapr_1.0.18/third_party/bamtools/build/src/toolkit/CMakeFiles/bamtools_cmd.dir
-/home/mmacd/bin/Reapr_1.0.18/third_party/bamtools/build/src/third_party/jsoncpp/CMakeFiles/jsoncpp.dir

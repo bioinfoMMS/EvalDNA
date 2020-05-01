@@ -1,0 +1,1058 @@
+Sending build context to Docker daemon  788.7MB
+Step 1/14 : FROM fedora:latest
+ ---> 536f3995adeb
+Step 2/14 : WORKDIR /usr/src/app
+ ---> Using cache
+ ---> a2a86053c04e
+Step 3/14 : RUN dnf -y install	R	wget	apt	perl        cpanminus    &&  rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 97c4bb33472d
+Step 4/14 : RUN cpanm File::Spec::Link
+ ---> Using cache
+ ---> da111276356e
+Step 5/14 : RUN INSTALL_PATH=/usr/src/app/anaconda     && wget http://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh     && bash Miniconda2-latest* -fbp $INSTALL_PATH
+ ---> Using cache
+ ---> f4c38fbf0a05
+Step 6/14 : ENV PATH=/root/anaconda/bin:$PATH
+ ---> Using cache
+ ---> 4fc6e2444523
+Step 7/14 : ENV PATH=/usr/src/app/anaconda/bin:$PATH
+ ---> Using cache
+ ---> 4b72dd1d00e8
+Step 8/14 : ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib64
+ ---> Using cache
+ ---> aca090f8318c
+Step 9/14 : ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/src/app/code/Reapr_1.0.18_for_Evaldna/third_party/pezmaster31-bamtools/lib
+ ---> Running in 3b5551fe4daa
+Removing intermediate container 3b5551fe4daa
+ ---> 7065bd3e0d74
+Step 10/14 : RUN conda install -y --channel=r --channel=bioconda --channel=conda-forge        biopython==1.74         numpy==1.16.5         python==2.7.15         r-caret==6.0_83         r-randomforest==4.6_14         samtools==1.9     && conda clean -ya
+ ---> Running in 1f2227202e12
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... failed with initial frozen solve. Retrying with flexible solve.
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... done
+[91m
+
+==> WARNING: A newer version of conda exists. <==
+  current version: 4.7.12
+  latest version: 4.8.3
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+[0m
+## Package Plan ##
+
+  environment location: /usr/src/app/anaconda
+
+  added / updated specs:
+    - biopython==1.74
+    - numpy==1.16.5
+    - python==2.7.15
+    - r-caret==6.0_83
+    - r-randomforest==4.6_14
+    - samtools==1.9
+
+
+The following packages will be downloaded:
+
+    package                    |            build
+    ---------------------------|-----------------
+    _r-mutex-1.0.1             |      anacondar_1           3 KB  conda-forge
+    binutils_impl_linux-64-2.34|       h53a641e_0         9.2 MB  conda-forge
+    binutils_linux-64-2.34     |      hc952b39_18          21 KB  conda-forge
+    biopython-1.74             |   py27h516909a_0         2.5 MB  conda-forge
+    bwidget-1.9.14             |                0         119 KB  conda-forge
+    bzip2-1.0.8                |       h516909a_2         396 KB  conda-forge
+    ca-certificates-2020.4.5.1 |       hecc5488_0         146 KB  conda-forge
+    cairo-1.14.12              |       h8948797_3         906 KB
+    certifi-2019.11.28         |   py27h8c360ce_1         149 KB  conda-forge
+    conda-4.8.3                |   py27h8c360ce_1         3.0 MB  conda-forge
+    curl-7.68.0                |       hf8cf82a_0         137 KB  conda-forge
+    fontconfig-2.13.0          |       h9420a91_0         227 KB
+    freetype-2.10.1            |       he06d7ca_0         877 KB  conda-forge
+    fribidi-1.0.9              |       h516909a_0         113 KB  conda-forge
+    gcc_impl_linux-64-7.3.0    |       habb00fd_1        41.9 MB
+    gcc_linux-64-7.3.0         |      h553295d_18          22 KB  conda-forge
+    gettext-0.19.8.1           |    hc5be6a0_1002         3.6 MB  conda-forge
+    gfortran_impl_linux-64-7.3.0|       hdf63c60_5         9.4 MB  conda-forge
+    gfortran_linux-64-7.3.0    |      h553295d_18          21 KB  conda-forge
+    glib-2.56.2                |    had28632_1001         4.7 MB  conda-forge
+    graphite2-1.3.13           |    he1b5a44_1001         102 KB  conda-forge
+    gsl-2.4                    |    h294904e_1006         2.6 MB  conda-forge
+    gxx_impl_linux-64-7.3.0    |       hdf63c60_1        15.0 MB
+    gxx_linux-64-7.3.0         |      h553295d_18          21 KB  conda-forge
+    harfbuzz-1.9.0             |    he243708_1001         957 KB  conda-forge
+    htslib-1.9                 |       h4da6232_3         1.2 MB  bioconda
+    icu-58.2                   |    hf484d3e_1000        22.6 MB  conda-forge
+    jpeg-9c                    |    h14c3975_1001         251 KB  conda-forge
+    krb5-1.16.4                |       h173b8e3_0         1.2 MB
+    ld_impl_linux-64-2.34      |       h53a641e_0         616 KB  conda-forge
+    libblas-3.8.0              |      14_openblas          10 KB  conda-forge
+    libcblas-3.8.0             |      14_openblas          10 KB  conda-forge
+    libcurl-7.68.0             |       hda55be3_0         564 KB  conda-forge
+    libdeflate-1.2             |       h516909a_1          63 KB  bioconda
+    libgfortran-ng-7.3.0       |       hdf63c60_5         1.7 MB  conda-forge
+    libiconv-1.15              |    h516909a_1006         2.0 MB  conda-forge
+    liblapack-3.8.0            |      14_openblas          10 KB  conda-forge
+    libopenblas-0.3.7          |       h5ec1e0e_6         7.6 MB  conda-forge
+    libpng-1.6.37              |       hed695b0_1         308 KB  conda-forge
+    libssh2-1.8.2              |       h22169c7_2         257 KB  conda-forge
+    libtiff-4.1.0              |       hc7e4089_6         668 KB  conda-forge
+    libuuid-1.0.3              |       h1bed415_2          15 KB
+    libwebp-base-1.1.0         |       h516909a_3         845 KB  conda-forge
+    libxcb-1.13                |    h14c3975_1002         396 KB  conda-forge
+    libxml2-2.9.9              |       h13577e0_2         1.3 MB  conda-forge
+    lz4-c-1.9.2                |       he1b5a44_0         223 KB  conda-forge
+    make-4.3                   |       h516909a_0         505 KB  conda-forge
+    numpy-1.16.5               |   py27h95a1406_0         4.3 MB  conda-forge
+    openssl-1.1.1g             |       h516909a_0         2.1 MB  conda-forge
+    pango-1.42.4               |       h049681c_0         464 KB
+    pcre-8.44                  |       he1b5a44_0         261 KB  conda-forge
+    pixman-0.38.0              |    h516909a_1003         594 KB  conda-forge
+    pthread-stubs-0.4          |    h14c3975_1001           5 KB  conda-forge
+    python-2.7.15              |       h9bab390_6         9.7 MB
+    python_abi-2.7             |         1_cp27mu           4 KB  conda-forge
+    r-assertthat-0.2.1         |    r36h6115d3f_0          74 KB  r
+    r-base-3.6.1               |       h9bb98a2_1        39.7 MB  r
+    r-bh-1.69.0_1              |    r36h6115d3f_0        10.9 MB  r
+    r-caret-6.0_83             |    r36h96ca727_0         6.0 MB  r
+    r-class-7.3_15             |    r36h96ca727_0          93 KB  r
+    r-cli-1.1.0                |    r36h6115d3f_0         189 KB  r
+    r-codetools-0.2_16         |    r36h6115d3f_0         107 KB  r
+    r-colorspace-1.4_1         |    r36h96ca727_0         2.5 MB  r
+    r-crayon-1.3.4             |    r36h6115d3f_0         757 KB  r
+    r-data.table-1.12.2        |    r36h96ca727_0         1.5 MB  r
+    r-dichromat-2.0_0          |    r36h6115d3f_4         163 KB  r
+    r-digest-0.6.18            |    r36h96ca727_0         155 KB  r
+    r-dplyr-0.8.0.1            |    r36h29659fb_0         1.9 MB  r
+    r-fansi-0.4.0              |    r36h96ca727_0         193 KB  r
+    r-foreach-1.4.4            |    r36h6115d3f_0         412 KB  r
+    r-generics-0.0.2           |    r36h6115d3f_0          82 KB  r
+    r-ggplot2-3.1.1            |    r36h6115d3f_0         3.6 MB  r
+    r-glue-1.3.1               |    r36h96ca727_0         165 KB  r
+    r-gower-0.2.0              |    r36h96ca727_0         173 KB  r
+    r-gtable-0.3.0             |    r36h6115d3f_0         425 KB  r
+    r-ipred-0.9_8              |    r36h96ca727_0         393 KB  r
+    r-iterators-1.0.10         |    r36h6115d3f_0         340 KB  r
+    r-kernsmooth-2.23_15       |    r36ha65eedd_4         102 KB  r
+    r-labeling-0.3             |    r36h6115d3f_4          71 KB  r
+    r-lattice-0.20_38          |    r36h96ca727_0         1.1 MB  r
+    r-lava-1.6.5               |    r36h6115d3f_0         2.2 MB  r
+    r-lazyeval-0.2.2           |    r36h96ca727_0         164 KB  r
+    r-lubridate-1.7.4          |    r36h29659fb_0         1.1 MB  r
+    r-magrittr-1.5             |    r36h6115d3f_4         173 KB  r
+    r-mass-7.3_51.3            |    r36h96ca727_0         1.1 MB  r
+    r-matrix-1.2_17            |    r36h96ca727_0         3.8 MB  r
+    r-mgcv-1.8_28              |    r36h96ca727_0         2.6 MB  r
+    r-modelmetrics-1.2.2       |    r36h29659fb_0         160 KB  r
+    r-munsell-0.5.0            |    r36h6115d3f_0         254 KB  r
+    r-nlme-3.1_139             |    r36ha65eedd_0         2.2 MB  r
+    r-nnet-7.3_12              |    r36h96ca727_0         119 KB  r
+    r-numderiv-2016.8_1        |    r36h6115d3f_0         132 KB  r
+    r-pillar-1.3.1             |    r36h6115d3f_0         180 KB  r
+    r-pkgconfig-2.0.2          |    r36h6115d3f_0          25 KB  r
+    r-plogr-0.2.0              |    r36h6115d3f_0          20 KB  r
+    r-plyr-1.8.4               |    r36h29659fb_0         815 KB  r
+    r-prodlim-2018.04.18       |    r36h29659fb_0         408 KB  r
+    r-purrr-0.3.2              |    r36h96ca727_0         397 KB  r
+    r-r6-2.4.0                 |    r36h6115d3f_0          68 KB  r
+    r-randomforest-4.6_14      |    r36ha65eedd_0         229 KB  r
+    r-rcolorbrewer-1.1_2       |    r36h6115d3f_0          62 KB  r
+    r-rcpp-1.0.1               |    r36h29659fb_0         3.3 MB  r
+    r-rcpproll-0.3.0           |    r36h29659fb_0         117 KB  r
+    r-recipes-0.1.5            |    r36h6115d3f_0         1.4 MB  r
+    r-reshape2-1.4.3           |    r36h29659fb_0         129 KB  r
+    r-rlang-0.3.4              |    r36h96ca727_0         1.0 MB  r
+    r-rpart-4.1_15             |    r36h96ca727_0         719 KB  r
+    r-scales-1.0.0             |    r36h29659fb_0         580 KB  r
+    r-squarem-2017.10_1        |    r36h6115d3f_0         302 KB  r
+    r-stringi-1.4.3            |    r36h29659fb_0         773 KB  r
+    r-stringr-1.4.0            |    r36h6115d3f_0         221 KB  r
+    r-survival-2.44_1.1        |    r36h96ca727_0         4.8 MB  r
+    r-tibble-2.1.1             |    r36h96ca727_0         316 KB  r
+    r-tidyr-0.8.3              |    r36h29659fb_0         446 KB  r
+    r-tidyselect-0.2.5         |    r36h29659fb_0         138 KB  r
+    r-timedate-3043.102        |    r36h6115d3f_0         1.6 MB  r
+    r-utf8-1.1.4               |    r36h96ca727_0         159 KB  r
+    r-viridislite-0.3.0        |    r36h6115d3f_0          66 KB  r
+    r-withr-2.1.2              |    r36h6115d3f_0         181 KB  r
+    samtools-1.9               |      h10a08f8_12         299 KB  bioconda
+    tktable-2.10               |       h14c3975_0          86 KB
+    xorg-libxau-1.0.9          |       h14c3975_0          13 KB  conda-forge
+    xorg-libxdmcp-1.1.3        |       h516909a_0          18 KB  conda-forge
+    xz-5.2.5                   |       h516909a_0         430 KB  conda-forge
+    zstd-1.4.4                 |       h6597ccf_3         991 KB  conda-forge
+    ------------------------------------------------------------
+                                           Total:       260.7 MB
+
+The following NEW packages will be INSTALLED:
+
+  _r-mutex           conda-forge/noarch::_r-mutex-1.0.1-anacondar_1
+  binutils_impl_lin~ conda-forge/linux-64::binutils_impl_linux-64-2.34-h53a641e_0
+  binutils_linux-64  conda-forge/linux-64::binutils_linux-64-2.34-hc952b39_18
+  biopython          conda-forge/linux-64::biopython-1.74-py27h516909a_0
+  bwidget            conda-forge/linux-64::bwidget-1.9.14-0
+  bzip2              conda-forge/linux-64::bzip2-1.0.8-h516909a_2
+  cairo              pkgs/main/linux-64::cairo-1.14.12-h8948797_3
+  curl               conda-forge/linux-64::curl-7.68.0-hf8cf82a_0
+  fontconfig         pkgs/main/linux-64::fontconfig-2.13.0-h9420a91_0
+  freetype           conda-forge/linux-64::freetype-2.10.1-he06d7ca_0
+  fribidi            conda-forge/linux-64::fribidi-1.0.9-h516909a_0
+  gcc_impl_linux-64  pkgs/main/linux-64::gcc_impl_linux-64-7.3.0-habb00fd_1
+  gcc_linux-64       conda-forge/linux-64::gcc_linux-64-7.3.0-h553295d_18
+  gettext            conda-forge/linux-64::gettext-0.19.8.1-hc5be6a0_1002
+  gfortran_impl_lin~ conda-forge/linux-64::gfortran_impl_linux-64-7.3.0-hdf63c60_5
+  gfortran_linux-64  conda-forge/linux-64::gfortran_linux-64-7.3.0-h553295d_18
+  glib               conda-forge/linux-64::glib-2.56.2-had28632_1001
+  graphite2          conda-forge/linux-64::graphite2-1.3.13-he1b5a44_1001
+  gsl                conda-forge/linux-64::gsl-2.4-h294904e_1006
+  gxx_impl_linux-64  pkgs/main/linux-64::gxx_impl_linux-64-7.3.0-hdf63c60_1
+  gxx_linux-64       conda-forge/linux-64::gxx_linux-64-7.3.0-h553295d_18
+  harfbuzz           conda-forge/linux-64::harfbuzz-1.9.0-he243708_1001
+  htslib             bioconda/linux-64::htslib-1.9-h4da6232_3
+  icu                conda-forge/linux-64::icu-58.2-hf484d3e_1000
+  jpeg               conda-forge/linux-64::jpeg-9c-h14c3975_1001
+  krb5               pkgs/main/linux-64::krb5-1.16.4-h173b8e3_0
+  ld_impl_linux-64   conda-forge/linux-64::ld_impl_linux-64-2.34-h53a641e_0
+  libblas            conda-forge/linux-64::libblas-3.8.0-14_openblas
+  libcblas           conda-forge/linux-64::libcblas-3.8.0-14_openblas
+  libcurl            conda-forge/linux-64::libcurl-7.68.0-hda55be3_0
+  libdeflate         bioconda/linux-64::libdeflate-1.2-h516909a_1
+  libgfortran-ng     conda-forge/linux-64::libgfortran-ng-7.3.0-hdf63c60_5
+  libiconv           conda-forge/linux-64::libiconv-1.15-h516909a_1006
+  liblapack          conda-forge/linux-64::liblapack-3.8.0-14_openblas
+  libopenblas        conda-forge/linux-64::libopenblas-0.3.7-h5ec1e0e_6
+  libpng             conda-forge/linux-64::libpng-1.6.37-hed695b0_1
+  libssh2            conda-forge/linux-64::libssh2-1.8.2-h22169c7_2
+  libtiff            conda-forge/linux-64::libtiff-4.1.0-hc7e4089_6
+  libuuid            pkgs/main/linux-64::libuuid-1.0.3-h1bed415_2
+  libwebp-base       conda-forge/linux-64::libwebp-base-1.1.0-h516909a_3
+  libxcb             conda-forge/linux-64::libxcb-1.13-h14c3975_1002
+  libxml2            conda-forge/linux-64::libxml2-2.9.9-h13577e0_2
+  lz4-c              conda-forge/linux-64::lz4-c-1.9.2-he1b5a44_0
+  make               conda-forge/linux-64::make-4.3-h516909a_0
+  numpy              conda-forge/linux-64::numpy-1.16.5-py27h95a1406_0
+  pango              pkgs/main/linux-64::pango-1.42.4-h049681c_0
+  pcre               conda-forge/linux-64::pcre-8.44-he1b5a44_0
+  pixman             conda-forge/linux-64::pixman-0.38.0-h516909a_1003
+  pthread-stubs      conda-forge/linux-64::pthread-stubs-0.4-h14c3975_1001
+  python_abi         conda-forge/linux-64::python_abi-2.7-1_cp27mu
+  r-assertthat       r/noarch::r-assertthat-0.2.1-r36h6115d3f_0
+  r-base             r/linux-64::r-base-3.6.1-h9bb98a2_1
+  r-bh               r/noarch::r-bh-1.69.0_1-r36h6115d3f_0
+  r-caret            r/linux-64::r-caret-6.0_83-r36h96ca727_0
+  r-class            r/linux-64::r-class-7.3_15-r36h96ca727_0
+  r-cli              r/noarch::r-cli-1.1.0-r36h6115d3f_0
+  r-codetools        r/noarch::r-codetools-0.2_16-r36h6115d3f_0
+  r-colorspace       r/linux-64::r-colorspace-1.4_1-r36h96ca727_0
+  r-crayon           r/noarch::r-crayon-1.3.4-r36h6115d3f_0
+  r-data.table       r/linux-64::r-data.table-1.12.2-r36h96ca727_0
+  r-dichromat        r/noarch::r-dichromat-2.0_0-r36h6115d3f_4
+  r-digest           r/linux-64::r-digest-0.6.18-r36h96ca727_0
+  r-dplyr            r/linux-64::r-dplyr-0.8.0.1-r36h29659fb_0
+  r-fansi            r/linux-64::r-fansi-0.4.0-r36h96ca727_0
+  r-foreach          r/noarch::r-foreach-1.4.4-r36h6115d3f_0
+  r-generics         r/noarch::r-generics-0.0.2-r36h6115d3f_0
+  r-ggplot2          r/noarch::r-ggplot2-3.1.1-r36h6115d3f_0
+  r-glue             r/linux-64::r-glue-1.3.1-r36h96ca727_0
+  r-gower            r/linux-64::r-gower-0.2.0-r36h96ca727_0
+  r-gtable           r/noarch::r-gtable-0.3.0-r36h6115d3f_0
+  r-ipred            r/linux-64::r-ipred-0.9_8-r36h96ca727_0
+  r-iterators        r/noarch::r-iterators-1.0.10-r36h6115d3f_0
+  r-kernsmooth       r/linux-64::r-kernsmooth-2.23_15-r36ha65eedd_4
+  r-labeling         r/noarch::r-labeling-0.3-r36h6115d3f_4
+  r-lattice          r/linux-64::r-lattice-0.20_38-r36h96ca727_0
+  r-lava             r/noarch::r-lava-1.6.5-r36h6115d3f_0
+  r-lazyeval         r/linux-64::r-lazyeval-0.2.2-r36h96ca727_0
+  r-lubridate        r/linux-64::r-lubridate-1.7.4-r36h29659fb_0
+  r-magrittr         r/noarch::r-magrittr-1.5-r36h6115d3f_4
+  r-mass             r/linux-64::r-mass-7.3_51.3-r36h96ca727_0
+  r-matrix           r/linux-64::r-matrix-1.2_17-r36h96ca727_0
+  r-mgcv             r/linux-64::r-mgcv-1.8_28-r36h96ca727_0
+  r-modelmetrics     r/linux-64::r-modelmetrics-1.2.2-r36h29659fb_0
+  r-munsell          r/noarch::r-munsell-0.5.0-r36h6115d3f_0
+  r-nlme             r/linux-64::r-nlme-3.1_139-r36ha65eedd_0
+  r-nnet             r/linux-64::r-nnet-7.3_12-r36h96ca727_0
+  r-numderiv         r/noarch::r-numderiv-2016.8_1-r36h6115d3f_0
+  r-pillar           r/noarch::r-pillar-1.3.1-r36h6115d3f_0
+  r-pkgconfig        r/noarch::r-pkgconfig-2.0.2-r36h6115d3f_0
+  r-plogr            r/noarch::r-plogr-0.2.0-r36h6115d3f_0
+  r-plyr             r/linux-64::r-plyr-1.8.4-r36h29659fb_0
+  r-prodlim          r/linux-64::r-prodlim-2018.04.18-r36h29659fb_0
+  r-purrr            r/linux-64::r-purrr-0.3.2-r36h96ca727_0
+  r-r6               r/noarch::r-r6-2.4.0-r36h6115d3f_0
+  r-randomforest     r/linux-64::r-randomforest-4.6_14-r36ha65eedd_0
+  r-rcolorbrewer     r/noarch::r-rcolorbrewer-1.1_2-r36h6115d3f_0
+  r-rcpp             r/linux-64::r-rcpp-1.0.1-r36h29659fb_0
+  r-rcpproll         r/linux-64::r-rcpproll-0.3.0-r36h29659fb_0
+  r-recipes          r/noarch::r-recipes-0.1.5-r36h6115d3f_0
+  r-reshape2         r/linux-64::r-reshape2-1.4.3-r36h29659fb_0
+  r-rlang            r/linux-64::r-rlang-0.3.4-r36h96ca727_0
+  r-rpart            r/linux-64::r-rpart-4.1_15-r36h96ca727_0
+  r-scales           r/linux-64::r-scales-1.0.0-r36h29659fb_0
+  r-squarem          r/noarch::r-squarem-2017.10_1-r36h6115d3f_0
+  r-stringi          r/linux-64::r-stringi-1.4.3-r36h29659fb_0
+  r-stringr          r/noarch::r-stringr-1.4.0-r36h6115d3f_0
+  r-survival         r/linux-64::r-survival-2.44_1.1-r36h96ca727_0
+  r-tibble           r/linux-64::r-tibble-2.1.1-r36h96ca727_0
+  r-tidyr            r/linux-64::r-tidyr-0.8.3-r36h29659fb_0
+  r-tidyselect       r/linux-64::r-tidyselect-0.2.5-r36h29659fb_0
+  r-timedate         r/noarch::r-timedate-3043.102-r36h6115d3f_0
+  r-utf8             r/linux-64::r-utf8-1.1.4-r36h96ca727_0
+  r-viridislite      r/noarch::r-viridislite-0.3.0-r36h6115d3f_0
+  r-withr            r/noarch::r-withr-2.1.2-r36h6115d3f_0
+  samtools           bioconda/linux-64::samtools-1.9-h10a08f8_12
+  tktable            pkgs/main/linux-64::tktable-2.10-h14c3975_0
+  xorg-libxau        conda-forge/linux-64::xorg-libxau-1.0.9-h14c3975_0
+  xorg-libxdmcp      conda-forge/linux-64::xorg-libxdmcp-1.1.3-h516909a_0
+  xz                 conda-forge/linux-64::xz-5.2.5-h516909a_0
+  zstd               conda-forge/linux-64::zstd-1.4.4-h6597ccf_3
+
+The following packages will be UPDATED:
+
+  ca-certificates    pkgs/main::ca-certificates-2019.10.16~ --> conda-forge::ca-certificates-2020.4.5.1-hecc5488_0
+  certifi               pkgs/main::certifi-2019.9.11-py27_0 --> conda-forge::certifi-2019.11.28-py27h8c360ce_1
+  conda                      pkgs/main::conda-4.7.12-py27_0 --> conda-forge::conda-4.8.3-py27h8c360ce_1
+  openssl              pkgs/main::openssl-1.1.1d-h7b6447c_3 --> conda-forge::openssl-1.1.1g-h516909a_0
+
+The following packages will be DOWNGRADED:
+
+  python                                  2.7.17-h9bab390_0 --> 2.7.15-h9bab390_6
+
+
+
+Downloading and Extracting Packages
+icu-58.2             | 22.6 MB   |            |   0% icu-58.2             | 22.6 MB   |            |   1% icu-58.2             | 22.6 MB   | ####       |  40% icu-58.2             | 22.6 MB   | ########## | 100% 
+r-mgcv-1.8_28        | 2.6 MB    |            |   0% r-mgcv-1.8_28        | 2.6 MB    | ###3       |  33% r-mgcv-1.8_28        | 2.6 MB    | ########## | 100% 
+r-kernsmooth-2.23_15 | 102 KB    |            |   0% r-kernsmooth-2.23_15 | 102 KB    | ########## | 100% 
+r-reshape2-1.4.3     | 129 KB    |            |   0% r-reshape2-1.4.3     | 129 KB    | ########## | 100% 
+graphite2-1.3.13     | 102 KB    |            |   0% graphite2-1.3.13     | 102 KB    | ########## | 100% 
+libwebp-base-1.1.0   | 845 KB    |            |   0% libwebp-base-1.1.0   | 845 KB    | ########## | 100% 
+libcurl-7.68.0       | 564 KB    |            |   0% libcurl-7.68.0       | 564 KB    | ########## | 100% 
+r-ipred-0.9_8        | 393 KB    |            |   0% r-ipred-0.9_8        | 393 KB    | ########## | 100% 
+xz-5.2.5             | 430 KB    |            |   0% xz-5.2.5             | 430 KB    | ########## | 100% 
+pixman-0.38.0        | 594 KB    |            |   0% pixman-0.38.0        | 594 KB    | ########## | 100% 
+r-modelmetrics-1.2.2 | 160 KB    |            |   0% r-modelmetrics-1.2.2 | 160 KB    | ########## | 100% 
+samtools-1.9         | 299 KB    |            |   0% samtools-1.9         | 299 KB    | ########## | 100% 
+fontconfig-2.13.0    | 227 KB    |            |   0% fontconfig-2.13.0    | 227 KB    | ########## | 100% 
+make-4.3             | 505 KB    |            |   0% make-4.3             | 505 KB    | ########## | 100% 
+r-stringr-1.4.0      | 221 KB    |            |   0% r-stringr-1.4.0      | 221 KB    | ########## | 100% 
+libpng-1.6.37        | 308 KB    |            |   0% libpng-1.6.37        | 308 KB    | ########## | 100% 
+r-withr-2.1.2        | 181 KB    |            |   0% r-withr-2.1.2        | 181 KB    | ########## | 100% 
+python_abi-2.7       | 4 KB      |            |   0% python_abi-2.7       | 4 KB      | ########## | 100% 
+r-generics-0.0.2     | 82 KB     |            |   0% r-generics-0.0.2     | 82 KB     | ########## | 100% 
+gfortran_impl_linux- | 9.4 MB    |            |   0% gfortran_impl_linux- | 9.4 MB    | ########8  |  88% gfortran_impl_linux- | 9.4 MB    | ########## | 100% 
+r-nlme-3.1_139       | 2.2 MB    |            |   0% r-nlme-3.1_139       | 2.2 MB    | ########## | 100% 
+r-fansi-0.4.0        | 193 KB    |            |   0% r-fansi-0.4.0        | 193 KB    | ########## | 100% 
+r-survival-2.44_1.1  | 4.8 MB    |            |   0% r-survival-2.44_1.1  | 4.8 MB    | ########## | 100% 
+libcblas-3.8.0       | 10 KB     |            |   0% libcblas-3.8.0       | 10 KB     | ########## | 100% 
+libiconv-1.15        | 2.0 MB    |            |   0% libiconv-1.15        | 2.0 MB    | ########## | 100% 
+certifi-2019.11.28   | 149 KB    |            |   0% certifi-2019.11.28   | 149 KB    | ########## | 100% 
+_r-mutex-1.0.1       | 3 KB      |            |   0% _r-mutex-1.0.1       | 3 KB      | ########## | 100% 
+r-gower-0.2.0        | 173 KB    |            |   0% r-gower-0.2.0        | 173 KB    | 9          |   9% r-gower-0.2.0        | 173 KB    | ########## | 100% 
+r-assertthat-0.2.1   | 74 KB     |            |   0% r-assertthat-0.2.1   | 74 KB     | ########## | 100% 
+r-prodlim-2018.04.18 | 408 KB    |            |   0% r-prodlim-2018.04.18 | 408 KB    | 3          |   4% r-prodlim-2018.04.18 | 408 KB    | ########## | 100% 
+r-base-3.6.1         | 39.7 MB   |            |   0% r-base-3.6.1         | 39.7 MB   | #          |  11% r-base-3.6.1         | 39.7 MB   | ##6        |  26% r-base-3.6.1         | 39.7 MB   | ####3      |  44% r-base-3.6.1         | 39.7 MB   | #####8     |  58% r-base-3.6.1         | 39.7 MB   | #######9   |  80% r-base-3.6.1         | 39.7 MB   | #########7 |  97% r-base-3.6.1         | 39.7 MB   | ########## | 100% 
+r-cli-1.1.0          | 189 KB    |            |   0% r-cli-1.1.0          | 189 KB    | ########## | 100% 
+r-utf8-1.1.4         | 159 KB    |            |   0% r-utf8-1.1.4         | 159 KB    | ########## | 100% 
+r-plogr-0.2.0        | 20 KB     |            |   0% r-plogr-0.2.0        | 20 KB     | ########## | 100% 
+python-2.7.15        | 9.7 MB    |            |   0% python-2.7.15        | 9.7 MB    | ###3       |  34% python-2.7.15        | 9.7 MB    | ########## | 100% 
+lz4-c-1.9.2          | 223 KB    |            |   0% lz4-c-1.9.2          | 223 KB    | ########## | 100% 
+zstd-1.4.4           | 991 KB    |            |   0% zstd-1.4.4           | 991 KB    | ########## | 100% 
+glib-2.56.2          | 4.7 MB    |            |   0% glib-2.56.2          | 4.7 MB    | ########## | 100% 
+r-rcpp-1.0.1         | 3.3 MB    |            |   0% r-rcpp-1.0.1         | 3.3 MB    | ########## | 100% 
+r-purrr-0.3.2        | 397 KB    |            |   0% r-purrr-0.3.2        | 397 KB    | ########## | 100% 
+binutils_linux-64-2. | 21 KB     |            |   0% binutils_linux-64-2. | 21 KB     | ########## | 100% 
+r-matrix-1.2_17      | 3.8 MB    |            |   0% r-matrix-1.2_17      | 3.8 MB    | ########## | 100% 
+openssl-1.1.1g       | 2.1 MB    |            |   0% openssl-1.1.1g       | 2.1 MB    | ########## | 100% 
+cairo-1.14.12        | 906 KB    |            |   0% cairo-1.14.12        | 906 KB    | ########## | 100% 
+fribidi-1.0.9        | 113 KB    |            |   0% fribidi-1.0.9        | 113 KB    | ########## | 100% 
+conda-4.8.3          | 3.0 MB    |            |   0% conda-4.8.3          | 3.0 MB    | ########## | 100% 
+r-ggplot2-3.1.1      | 3.6 MB    |            |   0% r-ggplot2-3.1.1      | 3.6 MB    | ########## | 100% 
+r-colorspace-1.4_1   | 2.5 MB    |            |   0% r-colorspace-1.4_1   | 2.5 MB    | ########## | 100% 
+tktable-2.10         | 86 KB     |            |   0% tktable-2.10         | 86 KB     | ########## | 100% 
+r-dichromat-2.0_0    | 163 KB    |            |   0% r-dichromat-2.0_0    | 163 KB    | ########## | 100% 
+numpy-1.16.5         | 4.3 MB    |            |   0% numpy-1.16.5         | 4.3 MB    | ########## | 100% 
+r-scales-1.0.0       | 580 KB    |            |   0% r-scales-1.0.0       | 580 KB    | ########## | 100% 
+r-rcpproll-0.3.0     | 117 KB    |            |   0% r-rcpproll-0.3.0     | 117 KB    | ########## | 100% 
+r-caret-6.0_83       | 6.0 MB    |            |   0% r-caret-6.0_83       | 6.0 MB    | ########## | 100% 
+ld_impl_linux-64-2.3 | 616 KB    |            |   0% ld_impl_linux-64-2.3 | 616 KB    | ########## | 100% 
+r-bh-1.69.0_1        | 10.9 MB   |            |   0% r-bh-1.69.0_1        | 10.9 MB   | ####       |  41% r-bh-1.69.0_1        | 10.9 MB   | ########## | 100% 
+r-mass-7.3_51.3      | 1.1 MB    |            |   0% r-mass-7.3_51.3      | 1.1 MB    | ########## | 100% 
+r-crayon-1.3.4       | 757 KB    |            |   0% r-crayon-1.3.4       | 757 KB    | ########## | 100% 
+libxml2-2.9.9        | 1.3 MB    |            |   0% libxml2-2.9.9        | 1.3 MB    | ########## | 100% 
+r-plyr-1.8.4         | 815 KB    |            |   0% r-plyr-1.8.4         | 815 KB    | ########## | 100% 
+r-iterators-1.0.10   | 340 KB    |            |   0% r-iterators-1.0.10   | 340 KB    | ########## | 100% 
+r-data.table-1.12.2  | 1.5 MB    |            |   0% r-data.table-1.12.2  | 1.5 MB    | ########## | 100% 
+gxx_linux-64-7.3.0   | 21 KB     |            |   0% gxx_linux-64-7.3.0   | 21 KB     | ########## | 100% 
+libtiff-4.1.0        | 668 KB    |            |   0% libtiff-4.1.0        | 668 KB    | ########## | 100% 
+r-r6-2.4.0           | 68 KB     |            |   0% r-r6-2.4.0           | 68 KB     | ########## | 100% 
+r-recipes-0.1.5      | 1.4 MB    |            |   0% r-recipes-0.1.5      | 1.4 MB    | ########## | 100% 
+bwidget-1.9.14       | 119 KB    |            |   0% bwidget-1.9.14       | 119 KB    | ########## | 100% 
+r-rlang-0.3.4        | 1.0 MB    |            |   0% r-rlang-0.3.4        | 1.0 MB    | ########## | 100% 
+curl-7.68.0          | 137 KB    |            |   0% curl-7.68.0          | 137 KB    | ########## | 100% 
+xorg-libxau-1.0.9    | 13 KB     |            |   0% xorg-libxau-1.0.9    | 13 KB     | ########## | 100% 
+libuuid-1.0.3        | 15 KB     |            |   0% libuuid-1.0.3        | 15 KB     | ########## | 100% 
+r-foreach-1.4.4      | 412 KB    |            |   0% r-foreach-1.4.4      | 412 KB    | ########## | 100% 
+r-glue-1.3.1         | 165 KB    |            |   0% r-glue-1.3.1         | 165 KB    | ########## | 100% 
+r-lubridate-1.7.4    | 1.1 MB    |            |   0% r-lubridate-1.7.4    | 1.1 MB    | ########## | 100% 
+r-squarem-2017.10_1  | 302 KB    |            |   0% r-squarem-2017.10_1  | 302 KB    | ########## | 100% 
+gfortran_linux-64-7. | 21 KB     |            |   0% gfortran_linux-64-7. | 21 KB     | ########## | 100% 
+r-tidyr-0.8.3        | 446 KB    |            |   0% r-tidyr-0.8.3        | 446 KB    | ########## | 100% 
+r-randomforest-4.6_1 | 229 KB    |            |   0% r-randomforest-4.6_1 | 229 KB    | ########## | 100% 
+libdeflate-1.2       | 63 KB     |            |   0% libdeflate-1.2       | 63 KB     | ########## | 100% 
+freetype-2.10.1      | 877 KB    |            |   0% freetype-2.10.1      | 877 KB    | ########## | 100% 
+r-lazyeval-0.2.2     | 164 KB    |            |   0% r-lazyeval-0.2.2     | 164 KB    | ########## | 100% 
+r-lattice-0.20_38    | 1.1 MB    |            |   0% r-lattice-0.20_38    | 1.1 MB    | ########## | 100% 
+r-pkgconfig-2.0.2    | 25 KB     |            |   0% r-pkgconfig-2.0.2    | 25 KB     | ########## | 100% 
+ca-certificates-2020 | 146 KB    |            |   0% ca-certificates-2020 | 146 KB    | ########## | 100% 
+biopython-1.74       | 2.5 MB    |            |   0% biopython-1.74       | 2.5 MB    | ########## | 100% 
+r-class-7.3_15       | 93 KB     |            |   0% r-class-7.3_15       | 93 KB     | ########## | 100% 
+r-codetools-0.2_16   | 107 KB    |            |   0% r-codetools-0.2_16   | 107 KB    | ########## | 100% 
+libblas-3.8.0        | 10 KB     |            |   0% libblas-3.8.0        | 10 KB     | ########## | 100% 
+r-digest-0.6.18      | 155 KB    |            |   0% r-digest-0.6.18      | 155 KB    | ########## | 100% 
+r-viridislite-0.3.0  | 66 KB     |            |   0% r-viridislite-0.3.0  | 66 KB     | ########## | 100% 
+gettext-0.19.8.1     | 3.6 MB    |            |   0% gettext-0.19.8.1     | 3.6 MB    | ########## | 100% 
+libgfortran-ng-7.3.0 | 1.7 MB    |            |   0% libgfortran-ng-7.3.0 | 1.7 MB    | ########## | 100% 
+pcre-8.44            | 261 KB    |            |   0% pcre-8.44            | 261 KB    | ########## | 100% 
+r-nnet-7.3_12        | 119 KB    |            |   0% r-nnet-7.3_12        | 119 KB    | #3         |  13% r-nnet-7.3_12        | 119 KB    | ########## | 100% 
+r-labeling-0.3       | 71 KB     |            |   0% r-labeling-0.3       | 71 KB     | ########## | 100% 
+pthread-stubs-0.4    | 5 KB      |            |   0% pthread-stubs-0.4    | 5 KB      | ########## | 100% 
+r-timedate-3043.102  | 1.6 MB    |            |   0% r-timedate-3043.102  | 1.6 MB    | ########## | 100% 
+htslib-1.9           | 1.2 MB    |            |   0% htslib-1.9           | 1.2 MB    | ########## | 100% 
+pango-1.42.4         | 464 KB    |            |   0% pango-1.42.4         | 464 KB    | ########## | 100% 
+gxx_impl_linux-64-7. | 15.0 MB   |            |   0% gxx_impl_linux-64-7. | 15.0 MB   | ######8    |  68% gxx_impl_linux-64-7. | 15.0 MB   | ########## | 100% 
+r-dplyr-0.8.0.1      | 1.9 MB    |            |   0% r-dplyr-0.8.0.1      | 1.9 MB    | ########## | 100% 
+r-numderiv-2016.8_1  | 132 KB    |            |   0% r-numderiv-2016.8_1  | 132 KB    | ########## | 100% 
+harfbuzz-1.9.0       | 957 KB    |            |   0% harfbuzz-1.9.0       | 957 KB    | ########## | 100% 
+gcc_impl_linux-64-7. | 41.9 MB   |            |   0% gcc_impl_linux-64-7. | 41.9 MB   | ##3        |  24% gcc_impl_linux-64-7. | 41.9 MB   | #####5     |  56% gcc_impl_linux-64-7. | 41.9 MB   | ########7  |  88% gcc_impl_linux-64-7. | 41.9 MB   | ########## | 100% 
+libxcb-1.13          | 396 KB    |            |   0% libxcb-1.13          | 396 KB    | ########## | 100% 
+r-tibble-2.1.1       | 316 KB    |            |   0% r-tibble-2.1.1       | 316 KB    | ########## | 100% 
+gcc_linux-64-7.3.0   | 22 KB     |            |   0% gcc_linux-64-7.3.0   | 22 KB     | ########## | 100% 
+jpeg-9c              | 251 KB    |            |   0% jpeg-9c              | 251 KB    | ########## | 100% 
+r-munsell-0.5.0      | 254 KB    |            |   0% r-munsell-0.5.0      | 254 KB    | 6          |   6% r-munsell-0.5.0      | 254 KB    | ########## | 100% 
+r-magrittr-1.5       | 173 KB    |            |   0% r-magrittr-1.5       | 173 KB    | ########## | 100% 
+gsl-2.4              | 2.6 MB    |            |   0% gsl-2.4              | 2.6 MB    | ########1  |  81% gsl-2.4              | 2.6 MB    | ########## | 100% 
+bzip2-1.0.8          | 396 KB    |            |   0% bzip2-1.0.8          | 396 KB    | ########## | 100% 
+krb5-1.16.4          | 1.2 MB    |            |   0% krb5-1.16.4          | 1.2 MB    | ########## | 100% 
+r-gtable-0.3.0       | 425 KB    |            |   0% r-gtable-0.3.0       | 425 KB    | ########## | 100% 
+libssh2-1.8.2        | 257 KB    |            |   0% libssh2-1.8.2        | 257 KB    | ########## | 100% 
+r-lava-1.6.5         | 2.2 MB    |            |   0% r-lava-1.6.5         | 2.2 MB    | ########## | 100% 
+xorg-libxdmcp-1.1.3  | 18 KB     |            |   0% xorg-libxdmcp-1.1.3  | 18 KB     | ########## | 100% 
+liblapack-3.8.0      | 10 KB     |            |   0% liblapack-3.8.0      | 10 KB     | ########## | 100% 
+r-tidyselect-0.2.5   | 138 KB    |            |   0% r-tidyselect-0.2.5   | 138 KB    | ########## | 100% 
+binutils_impl_linux- | 9.2 MB    |            |   0% binutils_impl_linux- | 9.2 MB    | ######1    |  61% binutils_impl_linux- | 9.2 MB    | ########## | 100% 
+r-rpart-4.1_15       | 719 KB    |            |   0% r-rpart-4.1_15       | 719 KB    | ########## | 100% 
+r-stringi-1.4.3      | 773 KB    |            |   0% r-stringi-1.4.3      | 773 KB    | ########## | 100% 
+libopenblas-0.3.7    | 7.6 MB    |            |   0% libopenblas-0.3.7    | 7.6 MB    | ########## | 100% 
+r-rcolorbrewer-1.1_2 | 62 KB     |            |   0% r-rcolorbrewer-1.1_2 | 62 KB     | ########## | 100% 
+r-pillar-1.3.1       | 180 KB    |            |   0% r-pillar-1.3.1       | 180 KB    | ########## | 100% 
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+Cache location: /usr/src/app/anaconda/pkgs
+Will remove the following tarballs:
+
+/usr/src/app/anaconda/pkgs
+--------------------------
+_libgcc_mutex-0.1-main.conda                   3 KB
+asn1crypto-1.2.0-py27_0.tar.bz2              164 KB
+ca-certificates-2019.10.16-0.tar.bz2         131 KB
+certifi-2019.9.11-py27_0.tar.bz2             154 KB
+cffi-1.13.0-py27h2e261b9_0.tar.bz2           220 KB
+chardet-3.0.4-py27_1003.conda                171 KB
+conda-4.7.12-py27_0.tar.bz2                  3.0 MB
+conda-package-handling-1.6.0-py27h7b6447c_0.conda     797 KB
+cryptography-2.8-py27h1ba5d50_0.tar.bz2      614 KB
+enum34-1.1.6-py27_1.conda                     58 KB
+futures-3.3.0-py27_0.conda                    29 KB
+idna-2.8-py27_0.conda                        114 KB
+ipaddress-1.0.23-py_0.tar.bz2                 23 KB
+libedit-3.1.20181209-hc058e9b_0.conda        163 KB
+libffi-3.2.1-hd88cf55_4.conda                 40 KB
+libgcc-ng-9.1.0-hdf63c60_0.conda             5.1 MB
+libstdcxx-ng-9.1.0-hdf63c60_0.conda          3.1 MB
+ncurses-6.1-he6710b0_1.conda                 777 KB
+openssl-1.1.1d-h7b6447c_3.tar.bz2            3.7 MB
+pip-19.3.1-py27_0.tar.bz2                    1.9 MB
+pycosat-0.6.3-py27h14c3975_0.conda            79 KB
+pycparser-2.19-py27_0.conda                  172 KB
+pyopenssl-19.0.0-py27_0.conda                 81 KB
+pysocks-1.7.1-py27_0.tar.bz2                  30 KB
+python-2.7.17-h9bab390_0.conda               9.8 MB
+readline-7.0-h7b6447c_5.conda                324 KB
+requests-2.22.0-py27_0.conda                  92 KB
+ruamel_yaml-0.15.46-py27h14c3975_0.conda     234 KB
+setuptools-41.4.0-py27_0.tar.bz2             640 KB
+six-1.12.0-py27_0.conda                       23 KB
+sqlite-3.30.0-h7b6447c_0.tar.bz2             1.9 MB
+tk-8.6.8-hbc83047_0.conda                    2.8 MB
+tqdm-4.36.1-py_0.conda                        50 KB
+urllib3-1.24.2-py27_0.conda                  158 KB
+wheel-0.33.6-py27_0.tar.bz2                   40 KB
+yaml-0.1.7-had09818_2.conda                   73 KB
+zlib-1.2.11-h7b6447c_3.conda                 103 KB
+icu-58.2-hf484d3e_1000.tar.bz2              22.6 MB
+r-mgcv-1.8_28-r36h96ca727_0.tar.bz2          2.6 MB
+r-kernsmooth-2.23_15-r36ha65eedd_4.tar.bz2     102 KB
+r-reshape2-1.4.3-r36h29659fb_0.tar.bz2       129 KB
+graphite2-1.3.13-he1b5a44_1001.tar.bz2       102 KB
+libwebp-base-1.1.0-h516909a_3.tar.bz2        845 KB
+libcurl-7.68.0-hda55be3_0.tar.bz2            564 KB
+r-ipred-0.9_8-r36h96ca727_0.tar.bz2          393 KB
+xz-5.2.5-h516909a_0.tar.bz2                  430 KB
+pixman-0.38.0-h516909a_1003.tar.bz2          594 KB
+r-modelmetrics-1.2.2-r36h29659fb_0.tar.bz2     160 KB
+samtools-1.9-h10a08f8_12.tar.bz2             299 KB
+fontconfig-2.13.0-h9420a91_0.conda           227 KB
+make-4.3-h516909a_0.tar.bz2                  505 KB
+r-stringr-1.4.0-r36h6115d3f_0.tar.bz2        221 KB
+libpng-1.6.37-hed695b0_1.tar.bz2             308 KB
+r-withr-2.1.2-r36h6115d3f_0.tar.bz2          181 KB
+python_abi-2.7-1_cp27mu.tar.bz2                4 KB
+r-generics-0.0.2-r36h6115d3f_0.tar.bz2        82 KB
+gfortran_impl_linux-64-7.3.0-hdf63c60_5.tar.bz2     9.4 MB
+r-nlme-3.1_139-r36ha65eedd_0.tar.bz2         2.2 MB
+r-fansi-0.4.0-r36h96ca727_0.tar.bz2          193 KB
+r-survival-2.44_1.1-r36h96ca727_0.tar.bz2     4.8 MB
+libcblas-3.8.0-14_openblas.tar.bz2            10 KB
+libiconv-1.15-h516909a_1006.tar.bz2          2.0 MB
+certifi-2019.11.28-py27h8c360ce_1.tar.bz2     149 KB
+_r-mutex-1.0.1-anacondar_1.tar.bz2             3 KB
+r-gower-0.2.0-r36h96ca727_0.tar.bz2          173 KB
+r-assertthat-0.2.1-r36h6115d3f_0.tar.bz2      74 KB
+r-prodlim-2018.04.18-r36h29659fb_0.tar.bz2     408 KB
+r-base-3.6.1-h9bb98a2_1.tar.bz2             39.7 MB
+r-cli-1.1.0-r36h6115d3f_0.tar.bz2            189 KB
+r-utf8-1.1.4-r36h96ca727_0.tar.bz2           159 KB
+r-plogr-0.2.0-r36h6115d3f_0.tar.bz2           20 KB
+python-2.7.15-h9bab390_6.conda               9.7 MB
+lz4-c-1.9.2-he1b5a44_0.tar.bz2               223 KB
+zstd-1.4.4-h6597ccf_3.tar.bz2                991 KB
+glib-2.56.2-had28632_1001.tar.bz2            4.7 MB
+r-rcpp-1.0.1-r36h29659fb_0.tar.bz2           3.3 MB
+r-purrr-0.3.2-r36h96ca727_0.tar.bz2          397 KB
+binutils_linux-64-2.34-hc952b39_18.tar.bz2      21 KB
+r-matrix-1.2_17-r36h96ca727_0.tar.bz2        3.8 MB
+openssl-1.1.1g-h516909a_0.tar.bz2            2.1 MB
+cairo-1.14.12-h8948797_3.conda               906 KB
+fribidi-1.0.9-h516909a_0.tar.bz2             113 KB
+conda-4.8.3-py27h8c360ce_1.tar.bz2           3.0 MB
+r-ggplot2-3.1.1-r36h6115d3f_0.tar.bz2        3.6 MB
+r-colorspace-1.4_1-r36h96ca727_0.tar.bz2     2.5 MB
+tktable-2.10-h14c3975_0.conda                 86 KB
+r-dichromat-2.0_0-r36h6115d3f_4.tar.bz2      163 KB
+numpy-1.16.5-py27h95a1406_0.tar.bz2          4.3 MB
+r-scales-1.0.0-r36h29659fb_0.tar.bz2         580 KB
+r-rcpproll-0.3.0-r36h29659fb_0.tar.bz2       117 KB
+r-caret-6.0_83-r36h96ca727_0.tar.bz2         6.0 MB
+ld_impl_linux-64-2.34-h53a641e_0.tar.bz2     616 KB
+r-bh-1.69.0_1-r36h6115d3f_0.tar.bz2         10.9 MB
+r-mass-7.3_51.3-r36h96ca727_0.tar.bz2        1.1 MB
+r-crayon-1.3.4-r36h6115d3f_0.tar.bz2         757 KB
+libxml2-2.9.9-h13577e0_2.tar.bz2             1.3 MB
+r-plyr-1.8.4-r36h29659fb_0.tar.bz2           815 KB
+r-iterators-1.0.10-r36h6115d3f_0.tar.bz2     340 KB
+r-data.table-1.12.2-r36h96ca727_0.tar.bz2     1.5 MB
+gxx_linux-64-7.3.0-h553295d_18.tar.bz2        21 KB
+libtiff-4.1.0-hc7e4089_6.tar.bz2             668 KB
+r-r6-2.4.0-r36h6115d3f_0.tar.bz2              68 KB
+r-recipes-0.1.5-r36h6115d3f_0.tar.bz2        1.4 MB
+bwidget-1.9.14-0.tar.bz2                     119 KB
+r-rlang-0.3.4-r36h96ca727_0.tar.bz2          1.0 MB
+curl-7.68.0-hf8cf82a_0.tar.bz2               137 KB
+xorg-libxau-1.0.9-h14c3975_0.tar.bz2          13 KB
+libuuid-1.0.3-h1bed415_2.conda                15 KB
+r-foreach-1.4.4-r36h6115d3f_0.tar.bz2        412 KB
+r-glue-1.3.1-r36h96ca727_0.tar.bz2           165 KB
+r-lubridate-1.7.4-r36h29659fb_0.tar.bz2      1.1 MB
+r-squarem-2017.10_1-r36h6115d3f_0.tar.bz2     302 KB
+gfortran_linux-64-7.3.0-h553295d_18.tar.bz2      21 KB
+r-tidyr-0.8.3-r36h29659fb_0.tar.bz2          446 KB
+r-randomforest-4.6_14-r36ha65eedd_0.tar.bz2     229 KB
+libdeflate-1.2-h516909a_1.tar.bz2             63 KB
+freetype-2.10.1-he06d7ca_0.tar.bz2           877 KB
+r-lazyeval-0.2.2-r36h96ca727_0.tar.bz2       164 KB
+r-lattice-0.20_38-r36h96ca727_0.tar.bz2      1.1 MB
+r-pkgconfig-2.0.2-r36h6115d3f_0.tar.bz2       25 KB
+ca-certificates-2020.4.5.1-hecc5488_0.tar.bz2     146 KB
+biopython-1.74-py27h516909a_0.tar.bz2        2.5 MB
+r-class-7.3_15-r36h96ca727_0.tar.bz2          93 KB
+r-codetools-0.2_16-r36h6115d3f_0.tar.bz2     107 KB
+libblas-3.8.0-14_openblas.tar.bz2             10 KB
+r-digest-0.6.18-r36h96ca727_0.tar.bz2        155 KB
+r-viridislite-0.3.0-r36h6115d3f_0.tar.bz2      66 KB
+gettext-0.19.8.1-hc5be6a0_1002.tar.bz2       3.6 MB
+libgfortran-ng-7.3.0-hdf63c60_5.tar.bz2      1.7 MB
+pcre-8.44-he1b5a44_0.tar.bz2                 261 KB
+r-nnet-7.3_12-r36h96ca727_0.tar.bz2          119 KB
+r-labeling-0.3-r36h6115d3f_4.tar.bz2          71 KB
+pthread-stubs-0.4-h14c3975_1001.tar.bz2        5 KB
+r-timedate-3043.102-r36h6115d3f_0.tar.bz2     1.6 MB
+htslib-1.9-h4da6232_3.tar.bz2                1.2 MB
+pango-1.42.4-h049681c_0.conda                464 KB
+gxx_impl_linux-64-7.3.0-hdf63c60_1.conda    15.0 MB
+r-dplyr-0.8.0.1-r36h29659fb_0.tar.bz2        1.9 MB
+r-numderiv-2016.8_1-r36h6115d3f_0.tar.bz2     132 KB
+harfbuzz-1.9.0-he243708_1001.tar.bz2         957 KB
+gcc_impl_linux-64-7.3.0-habb00fd_1.conda    41.9 MB
+libxcb-1.13-h14c3975_1002.tar.bz2            396 KB
+r-tibble-2.1.1-r36h96ca727_0.tar.bz2         316 KB
+gcc_linux-64-7.3.0-h553295d_18.tar.bz2        22 KB
+jpeg-9c-h14c3975_1001.tar.bz2                251 KB
+r-munsell-0.5.0-r36h6115d3f_0.tar.bz2        254 KB
+r-magrittr-1.5-r36h6115d3f_4.tar.bz2         173 KB
+gsl-2.4-h294904e_1006.tar.bz2                2.6 MB
+bzip2-1.0.8-h516909a_2.tar.bz2               396 KB
+krb5-1.16.4-h173b8e3_0.conda                 1.2 MB
+r-gtable-0.3.0-r36h6115d3f_0.tar.bz2         425 KB
+libssh2-1.8.2-h22169c7_2.tar.bz2             257 KB
+r-lava-1.6.5-r36h6115d3f_0.tar.bz2           2.2 MB
+xorg-libxdmcp-1.1.3-h516909a_0.tar.bz2        18 KB
+liblapack-3.8.0-14_openblas.tar.bz2           10 KB
+r-tidyselect-0.2.5-r36h29659fb_0.tar.bz2     138 KB
+binutils_impl_linux-64-2.34-h53a641e_0.tar.bz2     9.2 MB
+r-rpart-4.1_15-r36h96ca727_0.tar.bz2         719 KB
+r-stringi-1.4.3-r36h29659fb_0.tar.bz2        773 KB
+libopenblas-0.3.7-h5ec1e0e_6.tar.bz2         7.6 MB
+r-rcolorbrewer-1.1_2-r36h6115d3f_0.tar.bz2      62 KB
+r-pillar-1.3.1-r36h6115d3f_0.tar.bz2         180 KB
+
+---------------------------------------------------
+Total:                                     297.4 MB
+
+Removed _libgcc_mutex-0.1-main.conda
+Removed asn1crypto-1.2.0-py27_0.tar.bz2
+Removed ca-certificates-2019.10.16-0.tar.bz2
+Removed certifi-2019.9.11-py27_0.tar.bz2
+Removed cffi-1.13.0-py27h2e261b9_0.tar.bz2
+Removed chardet-3.0.4-py27_1003.conda
+Removed conda-4.7.12-py27_0.tar.bz2
+Removed conda-package-handling-1.6.0-py27h7b6447c_0.conda
+Removed cryptography-2.8-py27h1ba5d50_0.tar.bz2
+Removed enum34-1.1.6-py27_1.conda
+Removed futures-3.3.0-py27_0.conda
+Removed idna-2.8-py27_0.conda
+Removed ipaddress-1.0.23-py_0.tar.bz2
+Removed libedit-3.1.20181209-hc058e9b_0.conda
+Removed libffi-3.2.1-hd88cf55_4.conda
+Removed libgcc-ng-9.1.0-hdf63c60_0.conda
+Removed libstdcxx-ng-9.1.0-hdf63c60_0.conda
+Removed ncurses-6.1-he6710b0_1.conda
+Removed openssl-1.1.1d-h7b6447c_3.tar.bz2
+Removed pip-19.3.1-py27_0.tar.bz2
+Removed pycosat-0.6.3-py27h14c3975_0.conda
+Removed pycparser-2.19-py27_0.conda
+Removed pyopenssl-19.0.0-py27_0.conda
+Removed pysocks-1.7.1-py27_0.tar.bz2
+Removed python-2.7.17-h9bab390_0.conda
+Removed readline-7.0-h7b6447c_5.conda
+Removed requests-2.22.0-py27_0.conda
+Removed ruamel_yaml-0.15.46-py27h14c3975_0.conda
+Removed setuptools-41.4.0-py27_0.tar.bz2
+Removed six-1.12.0-py27_0.conda
+Removed sqlite-3.30.0-h7b6447c_0.tar.bz2
+Removed tk-8.6.8-hbc83047_0.conda
+Removed tqdm-4.36.1-py_0.conda
+Removed urllib3-1.24.2-py27_0.conda
+Removed wheel-0.33.6-py27_0.tar.bz2
+Removed yaml-0.1.7-had09818_2.conda
+Removed zlib-1.2.11-h7b6447c_3.conda
+Removed icu-58.2-hf484d3e_1000.tar.bz2
+Removed r-mgcv-1.8_28-r36h96ca727_0.tar.bz2
+Removed r-kernsmooth-2.23_15-r36ha65eedd_4.tar.bz2
+Removed r-reshape2-1.4.3-r36h29659fb_0.tar.bz2
+Removed graphite2-1.3.13-he1b5a44_1001.tar.bz2
+Removed libwebp-base-1.1.0-h516909a_3.tar.bz2
+Removed libcurl-7.68.0-hda55be3_0.tar.bz2
+Removed r-ipred-0.9_8-r36h96ca727_0.tar.bz2
+Removed xz-5.2.5-h516909a_0.tar.bz2
+Removed pixman-0.38.0-h516909a_1003.tar.bz2
+Removed r-modelmetrics-1.2.2-r36h29659fb_0.tar.bz2
+Removed samtools-1.9-h10a08f8_12.tar.bz2
+Removed fontconfig-2.13.0-h9420a91_0.conda
+Removed make-4.3-h516909a_0.tar.bz2
+Removed r-stringr-1.4.0-r36h6115d3f_0.tar.bz2
+Removed libpng-1.6.37-hed695b0_1.tar.bz2
+Removed r-withr-2.1.2-r36h6115d3f_0.tar.bz2
+Removed python_abi-2.7-1_cp27mu.tar.bz2
+Removed r-generics-0.0.2-r36h6115d3f_0.tar.bz2
+Removed gfortran_impl_linux-64-7.3.0-hdf63c60_5.tar.bz2
+Removed r-nlme-3.1_139-r36ha65eedd_0.tar.bz2
+Removed r-fansi-0.4.0-r36h96ca727_0.tar.bz2
+Removed r-survival-2.44_1.1-r36h96ca727_0.tar.bz2
+Removed libcblas-3.8.0-14_openblas.tar.bz2
+Removed libiconv-1.15-h516909a_1006.tar.bz2
+Removed certifi-2019.11.28-py27h8c360ce_1.tar.bz2
+Removed _r-mutex-1.0.1-anacondar_1.tar.bz2
+Removed r-gower-0.2.0-r36h96ca727_0.tar.bz2
+Removed r-assertthat-0.2.1-r36h6115d3f_0.tar.bz2
+Removed r-prodlim-2018.04.18-r36h29659fb_0.tar.bz2
+Removed r-base-3.6.1-h9bb98a2_1.tar.bz2
+Removed r-cli-1.1.0-r36h6115d3f_0.tar.bz2
+Removed r-utf8-1.1.4-r36h96ca727_0.tar.bz2
+Removed r-plogr-0.2.0-r36h6115d3f_0.tar.bz2
+Removed python-2.7.15-h9bab390_6.conda
+Removed lz4-c-1.9.2-he1b5a44_0.tar.bz2
+Removed zstd-1.4.4-h6597ccf_3.tar.bz2
+Removed glib-2.56.2-had28632_1001.tar.bz2
+Removed r-rcpp-1.0.1-r36h29659fb_0.tar.bz2
+Removed r-purrr-0.3.2-r36h96ca727_0.tar.bz2
+Removed binutils_linux-64-2.34-hc952b39_18.tar.bz2
+Removed r-matrix-1.2_17-r36h96ca727_0.tar.bz2
+Removed openssl-1.1.1g-h516909a_0.tar.bz2
+Removed cairo-1.14.12-h8948797_3.conda
+Removed fribidi-1.0.9-h516909a_0.tar.bz2
+Removed conda-4.8.3-py27h8c360ce_1.tar.bz2
+Removed r-ggplot2-3.1.1-r36h6115d3f_0.tar.bz2
+Removed r-colorspace-1.4_1-r36h96ca727_0.tar.bz2
+Removed tktable-2.10-h14c3975_0.conda
+Removed r-dichromat-2.0_0-r36h6115d3f_4.tar.bz2
+Removed numpy-1.16.5-py27h95a1406_0.tar.bz2
+Removed r-scales-1.0.0-r36h29659fb_0.tar.bz2
+Removed r-rcpproll-0.3.0-r36h29659fb_0.tar.bz2
+Removed r-caret-6.0_83-r36h96ca727_0.tar.bz2
+Removed ld_impl_linux-64-2.34-h53a641e_0.tar.bz2
+Removed r-bh-1.69.0_1-r36h6115d3f_0.tar.bz2
+Removed r-mass-7.3_51.3-r36h96ca727_0.tar.bz2
+Removed r-crayon-1.3.4-r36h6115d3f_0.tar.bz2
+Removed libxml2-2.9.9-h13577e0_2.tar.bz2
+Removed r-plyr-1.8.4-r36h29659fb_0.tar.bz2
+Removed r-iterators-1.0.10-r36h6115d3f_0.tar.bz2
+Removed r-data.table-1.12.2-r36h96ca727_0.tar.bz2
+Removed gxx_linux-64-7.3.0-h553295d_18.tar.bz2
+Removed libtiff-4.1.0-hc7e4089_6.tar.bz2
+Removed r-r6-2.4.0-r36h6115d3f_0.tar.bz2
+Removed r-recipes-0.1.5-r36h6115d3f_0.tar.bz2
+Removed bwidget-1.9.14-0.tar.bz2
+Removed r-rlang-0.3.4-r36h96ca727_0.tar.bz2
+Removed curl-7.68.0-hf8cf82a_0.tar.bz2
+Removed xorg-libxau-1.0.9-h14c3975_0.tar.bz2
+Removed libuuid-1.0.3-h1bed415_2.conda
+Removed r-foreach-1.4.4-r36h6115d3f_0.tar.bz2
+Removed r-glue-1.3.1-r36h96ca727_0.tar.bz2
+Removed r-lubridate-1.7.4-r36h29659fb_0.tar.bz2
+Removed r-squarem-2017.10_1-r36h6115d3f_0.tar.bz2
+Removed gfortran_linux-64-7.3.0-h553295d_18.tar.bz2
+Removed r-tidyr-0.8.3-r36h29659fb_0.tar.bz2
+Removed r-randomforest-4.6_14-r36ha65eedd_0.tar.bz2
+Removed libdeflate-1.2-h516909a_1.tar.bz2
+Removed freetype-2.10.1-he06d7ca_0.tar.bz2
+Removed r-lazyeval-0.2.2-r36h96ca727_0.tar.bz2
+Removed r-lattice-0.20_38-r36h96ca727_0.tar.bz2
+Removed r-pkgconfig-2.0.2-r36h6115d3f_0.tar.bz2
+Removed ca-certificates-2020.4.5.1-hecc5488_0.tar.bz2
+Removed biopython-1.74-py27h516909a_0.tar.bz2
+Removed r-class-7.3_15-r36h96ca727_0.tar.bz2
+Removed r-codetools-0.2_16-r36h6115d3f_0.tar.bz2
+Removed libblas-3.8.0-14_openblas.tar.bz2
+Removed r-digest-0.6.18-r36h96ca727_0.tar.bz2
+Removed r-viridislite-0.3.0-r36h6115d3f_0.tar.bz2
+Removed gettext-0.19.8.1-hc5be6a0_1002.tar.bz2
+Removed libgfortran-ng-7.3.0-hdf63c60_5.tar.bz2
+Removed pcre-8.44-he1b5a44_0.tar.bz2
+Removed r-nnet-7.3_12-r36h96ca727_0.tar.bz2
+Removed r-labeling-0.3-r36h6115d3f_4.tar.bz2
+Removed pthread-stubs-0.4-h14c3975_1001.tar.bz2
+Removed r-timedate-3043.102-r36h6115d3f_0.tar.bz2
+Removed htslib-1.9-h4da6232_3.tar.bz2
+Removed pango-1.42.4-h049681c_0.conda
+Removed gxx_impl_linux-64-7.3.0-hdf63c60_1.conda
+Removed r-dplyr-0.8.0.1-r36h29659fb_0.tar.bz2
+Removed r-numderiv-2016.8_1-r36h6115d3f_0.tar.bz2
+Removed harfbuzz-1.9.0-he243708_1001.tar.bz2
+Removed gcc_impl_linux-64-7.3.0-habb00fd_1.conda
+Removed libxcb-1.13-h14c3975_1002.tar.bz2
+Removed r-tibble-2.1.1-r36h96ca727_0.tar.bz2
+Removed gcc_linux-64-7.3.0-h553295d_18.tar.bz2
+Removed jpeg-9c-h14c3975_1001.tar.bz2
+Removed r-munsell-0.5.0-r36h6115d3f_0.tar.bz2
+Removed r-magrittr-1.5-r36h6115d3f_4.tar.bz2
+Removed gsl-2.4-h294904e_1006.tar.bz2
+Removed bzip2-1.0.8-h516909a_2.tar.bz2
+Removed krb5-1.16.4-h173b8e3_0.conda
+Removed r-gtable-0.3.0-r36h6115d3f_0.tar.bz2
+Removed libssh2-1.8.2-h22169c7_2.tar.bz2
+Removed r-lava-1.6.5-r36h6115d3f_0.tar.bz2
+Removed xorg-libxdmcp-1.1.3-h516909a_0.tar.bz2
+Removed liblapack-3.8.0-14_openblas.tar.bz2
+Removed r-tidyselect-0.2.5-r36h29659fb_0.tar.bz2
+Removed binutils_impl_linux-64-2.34-h53a641e_0.tar.bz2
+Removed r-rpart-4.1_15-r36h96ca727_0.tar.bz2
+Removed r-stringi-1.4.3-r36h29659fb_0.tar.bz2
+Removed libopenblas-0.3.7-h5ec1e0e_6.tar.bz2
+Removed r-rcolorbrewer-1.1_2-r36h6115d3f_0.tar.bz2
+Removed r-pillar-1.3.1-r36h6115d3f_0.tar.bz2
+WARNING: /root/.conda/pkgs does not exist
+Cache location: /usr/src/app/anaconda/pkgs
+Will remove the following packages:
+/usr/src/app/anaconda/pkgs
+--------------------------
+
+_libgcc_mutex-0.1-main                         7 KB
+python_abi-2.7-1_cp27mu                       10 KB
+libcblas-3.8.0-14_openblas                    36 KB
+_r-mutex-1.0.1-anacondar_1                     9 KB
+libblas-3.8.0-14_openblas                     36 KB
+pthread-stubs-0.4-h14c3975_1001               12 KB
+liblapack-3.8.0-14_openblas                   36 KB
+
+---------------------------------------------------
+Total:                                       146 KB
+
+removing _libgcc_mutex-0.1-main
+removing python_abi-2.7-1_cp27mu
+removing libcblas-3.8.0-14_openblas
+removing _r-mutex-1.0.1-anacondar_1
+removing libblas-3.8.0-14_openblas
+removing pthread-stubs-0.4-h14c3975_1001
+removing liblapack-3.8.0-14_openblas
+Removing intermediate container 1f2227202e12
+ ---> cc7522f63d36
+Step 11/14 : EXPOSE 8080
+ ---> Running in ecb2fcaa1376
+Removing intermediate container ecb2fcaa1376
+ ---> 8a9382e5bce2
+Step 12/14 : RUN useradd --create-home --shell /bin/bash dockeruser
+ ---> Running in 32ed56c2df23
+Removing intermediate container 32ed56c2df23
+ ---> 9d116afc69ab
+Step 13/14 : USER dockeruser
+ ---> Running in 52a81bdac1dd
+Removing intermediate container 52a81bdac1dd
+ ---> 32eaa163d190
+Step 14/14 : CMD cd code && python EvalDNA_v1.1.py -i ../data/chr8.unlocalized.scaf.fna -o chr8_CH -c ../data/config.txt && Rscript run_mammalian_model_v1.1.R ../results/model_input_chr8_CH.csv
+ ---> Running in 0343d08020c6
+Removing intermediate container 0343d08020c6
+ ---> c2cdd2686d42
+Successfully built c2cdd2686d42
+Successfully tagged evaldna_test:latest
+NW_020822618.1
+NW_020822619.1
+NW_020822620.1
+NW_020822621.1
+NW_020822622.1
+NW_020822623.1
+NW_020822624.1
+NW_020822625.1
+NW_020822626.1
+NW_020822627.1
+NW_020822628.1
+NW_020822629.1
+NW_020822630.1
+NW_020822631.1
+NW_020822632.1
+NW_020822633.1
+NW_020822634.1
+NW_020822635.1
+NW_020822636.1
+NW_020822637.1
+NW_020822638.1
+NW_020822639.1
+NW_020822640.1
+NW_020822641.1
+Input file is  ../data/chr8.unlocalized.scaf.fna
+Output file is  chr8_CH
+Config file is ../data/config.txt
+Checking Input Fasta File
+.....Running Basic Stats.....
+gap percent is 0.0827034255656
+.....Runnning Reapr.....
+[REAPR smaltmap] Running: /usr/src/app/code/Reapr_1.0.18_for_Evaldna/src/smalt index -k 13 -s 2 out_reapr_chr8_CH.bam.tmp.47.smaltmap.smalt_index chr8_CH.facheck.fa
+# Command line:  /usr/src/app/code/Reapr_1.0.18_for_Evaldna/src/smalt index -k 13 -s 2 out_reapr_chr8_CH.bam.tmp.47.smaltmap.smalt_index chr8_CH.facheck.fa
+# Reading sequences ...
+# Writing sequence set ...
+# Setting up perfect hash index ...
+# word length = 13 bases, skip step = 2 bases ...
+# number of bits for key = 0 with 0 perfect bits
+# Counting k-tuple occurrences ...
+# Setting the k-tuple positions in index ...
+# Hash table is set up.
+# =-=-=-=-= Hash Index Stats =-=-=-=-=
+# Perfect hash index.
+# Word length:              13 bases
+# Skip step:                2 bases
+# Number of hash keys:      67108864
+# Number of word positions: 48287393
+# =-=-= End of Hash Index Stats =-=-=
+# Writing table to file ... 
+# smalt: Total elapsed wall clock time: 9 seconds
+[REAPR smaltmap] Running: /usr/src/app/code/Reapr_1.0.18_for_Evaldna/src/smalt sample -u 50 -o out_reapr_chr8_CH.bam.tmp.47.smaltmap.smalt_sample out_reapr_chr8_CH.bam.tmp.47.smaltmap.smalt_index ../data/chr8_reads_1.fq ../data/chr8_reads_2.fq
+# Command line:  /usr/src/app/code/Reapr_1.0.18_for_Evaldna/src/smalt sample -u 50 -o out_reapr_chr8_CH.bam.tmp.47.smaltmap.smalt_sample out_reapr_chr8_CH.bam.tmp.47.smaltmap.smalt_index ../data/chr8_reads_1.fq ../data/chr8_reads_2.fq
+# Opening read files ...
+# Reading reference sequences ...
+# Reading hash table ...
+# =-=-=-=-= Hash Index Stats =-=-=-=-=
+# Perfect hash index.
+# Word length:              13 bases
+# Skip step:                2 bases
+# Number of hash keys:      67108864
+# Number of word positions: 48287393
+# =-=-= End of Hash Index Stats =-=-=
+# Check of read pairs ok ...
+# Mate names match ...
+# Sampling insert size distribution ...
+# Processed 747988 read pairs
+# and 1 single reads.
+# smalt: Total elapsed wall clock time: 26 seconds
+[REAPR smaltmap] Running: /usr/src/app/code/Reapr_1.0.18_for_Evaldna/src/smalt map -r 0 -x -y 0.5 -n 16  -g out_reapr_chr8_CH.bam.tmp.47.smaltmap.smalt_sample -f samsoft out_reapr_chr8_CH.bam.tmp.47.smaltmap.smalt_index ../data/chr8_reads_1.fq ../data/chr8_reads_2.fq | awk '$1!~/^#/'   | /usr/src/app/code/Reapr_1.0.18_for_Evaldna/src/samtools view -S -T chr8_CH.facheck.fa -b - > out_reapr_chr8_CH.bam.tmp.47.smaltmap.raw.bam
+# Command line:  /usr/src/app/code/Reapr_1.0.18_for_Evaldna/src/smalt map -r 0 -x -y 0.5 -n 16 -g out_reapr_chr8_CH.bam.tmp.47.smaltmap.smalt_sample -f samsoft out_reapr_chr8_CH.bam.tmp.47.smaltmap.smalt_index ../data/chr8_reads_1.fq ../data/chr8_reads_2.fq
+# Reading distribution of insert sizes from file ...
+# Sampled histogram
+# Smoothed histogram
+# Opening read files ...
+# Reading reference sequences ...
+# Reading hash table ...
+# =-=-=-=-= Hash Index Stats =-=-=-=-=
+# Perfect hash index.
+# Word length:              13 bases
+# Skip step:                2 bases
+# Number of hash keys:      67108864
+# Number of word positions: 48287393
+# =-=-= End of Hash Index Stats =-=-=
+# Processing query reads ...
+[sam_header_read2] 24 sequences loaded.
+# Processed 747989 read pairs.
+# smalt: Total elapsed wall clock time: 1 minutes and 50 seconds
+[REAPR smaltmap] Running: /usr/src/app/code/Reapr_1.0.18_for_Evaldna/src/samtools sort out_reapr_chr8_CH.bam.tmp.47.smaltmap.raw.bam out_reapr_chr8_CH.bam.tmp.47.smaltmap.raw.bam.sort
+[REAPR smaltmap] Running: /usr/src/app/code/Reapr_1.0.18_for_Evaldna/src/samtools rmdup out_reapr_chr8_CH.bam.tmp.47.smaltmap.raw.bam.sort.bam out_reapr_chr8_CH.bam.tmp.47.smaltmap.rmdup.bam
+[bam_rmdup_core] processing reference NW_020822618.1_Cricetulus_griseus_strain_17A/GY_chromosome_8_unlocalized_genomic_scaffold__alternate_assembly_CriGri_PICR_picr_117__whole_genome_shotgun_sequence...
+[bam_rmdup_core] processing reference NW_020822619.1_Cricetulus_griseus_strain_17A/GY_chromosome_8_unlocalized_genomic_scaffold__alternate_assembly_CriGri_PICR_picr_136__whole_genome_shotgun_sequence...
+[bam_rmdup_core] processing reference NW_020822620.1_Cricetulus_griseus_strain_17A/GY_chromosome_8_unlocalized_genomic_scaffold__alternate_assembly_CriGri_PICR_picr_137__whole_genome_shotgun_sequence...
+[bam_rmdup_core] 2 unmatched pairs
+[bam_rmdup_core] processing reference NW_020822621.1_Cricetulus_griseus_strain_17A/GY_chromosome_8_unlocalized_genomic_scaffold__alternate_assembly_CriGri_PICR_picr_143__whole_genome_shotgun_sequence...
+[bam_rmdup_core] 2 unmatched pairs
+[bam_rmdup_core] processing reference NW_020822622.1_Cricetulus_griseus_strain_17A/GY_chromosome_8_unlocalized_genomic_scaffold__alternate_assembly_CriGri_PICR_picr_1468__whole_genome_shotgun_sequence...
+[bam_rmdup_core] processing reference NW_020822623.1_Cricetulus_griseus_strain_17A/GY_chromosome_8_unlocalized_genomic_scaffold__alternate_assembly_CriGri_PICR_picr_153__whole_genome_shotgun_sequence...
+[bam_rmdup_core] processing reference NW_020822624.1_Cricetulus_griseus_strain_17A/GY_chromosome_8_unlocalized_genomic_scaffold__alternate_assembly_CriGri_PICR_picr_1554__whole_genome_shotgun_sequence...
+[bam_rmdup_core] processing reference NW_020822625.1_Cricetulus_griseus_strain_17A/GY_chromosome_8_unlocalized_genomic_scaffold__alternate_assembly_CriGri_PICR_picr_1586__whole_genome_shotgun_sequence...
+[bam_rmdup_core] processing reference NW_020822626.1_Cricetulus_griseus_strain_17A/GY_chromosome_8_unlocalized_genomic_scaffold__alternate_assembly_CriGri_PICR_picr_183__whole_genome_shotgun_sequence...
+[bam_rmdup_core] processing reference NW_020822627.1_Cricetulus_griseus_strain_17A/GY_chromosome_8_unlocalized_genomic_scaffold__alternate_assembly_CriGri_PICR_picr_188__whole_genome_shotgun_sequence...
+[bam_rmdup_core] processing reference NW_020822628.1_Cricetulus_griseus_strain_17A/GY_chromosome_8_unlocalized_genomic_scaffold__alternate_assembly_CriGri_PICR_picr_192__whole_genome_shotgun_sequence...
+[bam_rmdup_core] processing reference NW_020822629.1_Cricetulus_griseus_strain_17A/GY_chromosome_8_unlocalized_genomic_scaffold__alternate_assembly_CriGri_PICR_picr_45__whole_genome_shotgun_sequence...
+[bam_rmdup_core] 2 unmatched pairs
+[bam_rmdup_core] processing reference NW_020822630.1_Cricetulus_griseus_strain_17A/GY_chromosome_8_unlocalized_genomic_scaffold__alternate_assembly_CriGri_PICR_picr_47_new__whole_genome_shotgun_sequence...
+[bam_rmdup_core] processing reference NW_020822631.1_Cricetulus_griseus_strain_17A/GY_chromosome_8_unlocalized_genomic_scaffold__alternate_assembly_CriGri_PICR_picr_538__whole_genome_shotgun_sequence...
+[bam_rmdup_core] processing reference NW_020822632.1_Cricetulus_griseus_strain_17A/GY_chromosome_8_unlocalized_genomic_scaffold__alternate_assembly_CriGri_PICR_picr_63__whole_genome_shotgun_sequence...
+[bam_rmdup_core] processing reference NW_020822633.1_Cricetulus_griseus_strain_17A/GY_chromosome_8_unlocalized_genomic_scaffold__alternate_assembly_CriGri_PICR_picr_716__whole_genome_shotgun_sequence...
+[bam_rmdup_core] processing reference NW_020822634.1_Cricetulus_griseus_strain_17A/GY_chromosome_8_unlocalized_genomic_scaffold__alternate_assembly_CriGri_PICR_picr_73__whole_genome_shotgun_sequence...
+[bam_rmdup_core] processing reference NW_020822635.1_Cricetulus_griseus_strain_17A/GY_chromosome_8_unlocalized_genomic_scaffold__alternate_assembly_CriGri_PICR_picr_735__whole_genome_shotgun_sequence...
+[bam_rmdup_core] processing reference NW_020822636.1_Cricetulus_griseus_strain_17A/GY_chromosome_8_unlocalized_genomic_scaffold__alternate_assembly_CriGri_PICR_picr_79__whole_genome_shotgun_sequence...
+[bam_rmdup_core] processing reference NW_020822637.1_Cricetulus_griseus_strain_17A/GY_chromosome_8_unlocalized_genomic_scaffold__alternate_assembly_CriGri_PICR_picr_872__whole_genome_shotgun_sequence...
+[bam_rmdup_core] processing reference NW_020822638.1_Cricetulus_griseus_strain_17A/GY_chromosome_8_unlocalized_genomic_scaffold__alternate_assembly_CriGri_PICR_picr_88__whole_genome_shotgun_sequence...
+[bam_rmdup_core] 31 unmatched pairs
+[bam_rmdup_core] processing reference NW_020822639.1_Cricetulus_griseus_strain_17A/GY_chromosome_8_unlocalized_genomic_scaffold__alternate_assembly_CriGri_PICR_picr_948__whole_genome_shotgun_sequence...
+[bam_rmdup_core] processing reference NW_020822640.1_Cricetulus_griseus_strain_17A/GY_chromosome_8_unlocalized_genomic_scaffold__alternate_assembly_CriGri_PICR_picr_953__whole_genome_shotgun_sequence...
+[bam_rmdup_core] processing reference NW_020822641.1_Cricetulus_griseus_strain_17A/GY_chromosome_8_unlocalized_genomic_scaffold__alternate_assembly_CriGri_PICR_picr_97__whole_genome_shotgun_sequence...
+[bam_rmdup_core] 293 / 306622 = 0.0010 in library '	'
+[REAPR smaltmap] Running: echo "@HD VN:1.0 SO:coordinate" | awk '{OFS="\t"; $1=$1; print}' > out_reapr_chr8_CH.bam.tmp.47.smaltmap.header
+[REAPR smaltmap] Running: /usr/src/app/code/Reapr_1.0.18_for_Evaldna/src/samtools view -H out_reapr_chr8_CH.bam.tmp.47.smaltmap.rmdup.bam >> out_reapr_chr8_CH.bam.tmp.47.smaltmap.header
+[REAPR smaltmap] Running: /usr/src/app/code/Reapr_1.0.18_for_Evaldna/src/samtools reheader out_reapr_chr8_CH.bam.tmp.47.smaltmap.header out_reapr_chr8_CH.bam.tmp.47.smaltmap.rmdup.bam > out_reapr_chr8_CH.bam
+[REAPR smaltmap] Running: /usr/src/app/code/Reapr_1.0.18_for_Evaldna/src/samtools index out_reapr_chr8_CH.bam
+[REAPR smaltmap] Running: rm out_reapr_chr8_CH.bam.tmp.47.smaltmap.*
+[REAPR preprocess] sampling region NW_020822618.1_Cricetulus_griseus_strain_17A/GY_chromosome_8_unlocalized_genomic_scaffold__alternate_assembly_CriGri_PICR_picr_117__whole_genome_shotgun_sequence:486-636673.  Already sampled 0 bases
+[REAPR preprocess] sampling region NW_020822618.1_Cricetulus_griseus_strain_17A/GY_chromosome_8_unlocalized_genomic_scaffold__alternate_assembly_CriGri_PICR_picr_117__whole_genome_shotgun_sequence:636809-1000620.  Already sampled 636188 bases
+[REAPR preprocess] Sampled 1000000 bases for GC/coverage estimation
+mean	636
+
+pc99	755
+
+pc99 = 755.0
+mean = 636.0
+fcdcutoff = 0.83
+
+past score step
+read_REAPR_stats[Soft_clip] = 10579
+read_REAPR_stats[Low_read_coverage] = 155941
+read_REAPR_stats[Error_free_bases] = 1.61%
+read_REAPR_stats[Low_perfect_coverage] = 0
+read_REAPR_stats[Links] = 2249
+read_REAPR_stats[Total_gap_length] = 60241663
+read_REAPR_stats[Mean_sequence_length] = 6558.21
+read_REAPR_stats[Number_of_sequences] = 19815
+read_REAPR_stats[Low_score_regions] = 28
+read_REAPR_stats[Wrong_read_orientation] = 36662
+read_REAPR_stats[FCD_errors_over_a_gap] = 0
+read_REAPR_stats[Low_fragment_coverage_within_a_contig] = 92693
+read_REAPR_stats[FCD_errors_within_a_contig] = 0
+read_REAPR_stats[Total_length] = 129950944
+read_REAPR_stats[Length_of_longest_sequence] = 9141248
+read_REAPR_stats[Number_of_gaps] = 92761
+read_REAPR_stats[Low_fragment_coverage_over_a_gap] = 30
+read_REAPR_stats[Collapsed_repeats] = 32963
+total chr length =96656214
+fcd_contig = 0.0
+fcd_gap = 0.0
+low frag cov contig = 62.1505214347
+low frag cov gap = 0.0593453825949
+links = 0.271248985606
+clips = 0.0109449765951
+repeats = 9.50196745757
+low read cov = 59.4254550463
+.....Combining results in order to run  machine learning on your assembly.....
+read_stats[bases_trimmed] = 0
+read_stats[error_rate] = 0.000000e+00
+read_stats[insert_size_standard_deviation] = 3094.5
+read_stats[non-primary_alignments] = 0
+read_stats[maximum_length] = 100
+read_stats[maximum_last_fragment_length] = 100
+read_stats[reads_mapped_and_paired] = 1495429
+read_stats[sequences] = 1495429
+read_stats[average_quality] = 36.7
+read_stats[insert_size_average] = 2133.5
+read_stats[reads_mapped] = 1495429
+read_stats[reads_unmapped] = 0
+read_stats[reads_QC_failed] = 0
+read_stats[reads_paired] = 1495429
+read_stats[average_last_fragment_length] = 97
+read_stats[1st_fragments] = 747719
+read_stats[reads_MQ0] = 112556
+read_stats[average_length] = 97
+read_stats[percentage_of_properly_paired_reads_(%)] = 31.3
+read_stats[bases_mapped] = 145365722
+read_stats[total_length] = 145365722
+read_stats[bases_mapped_(cigar)] = 134724776
+read_stats[bases_duplicated] = 0
+read_stats[average_first_fragment_length] = 97
+read_stats[pairs_with_other_orientation] = 29106
+read_stats[mismatches] = 0
+read_stats[total_last_fragment_length] = 72650969
+read_stats[reads_properly_paired] = 467337
+read_stats[inward_oriented_pairs] = 255199
+read_stats[filtered_sequences] = 0
+read_stats[outward_oriented_pairs] = 22037
+read_stats[total_first_fragment_length] = 72714753
+read_stats[raw_total_sequences] = 1495429
+read_stats[pairs_on_different_chromosomes] = 441360
+read_stats[last_fragments] = 747710
+read_stats[is_sorted] = 1
+read_stats[maximum_first_fragment_length] = 100
+read_stats[reads_duplicated] = 0
+.....Collecting feature metrics to be tested in ML tool.....
+calc metric = [10.519531625768003, 0.08270342556558236, 31.251032312466858, 0.0, 0.0, 62.15052143465913, 0.059345382594853134, 0.2712489856058297, 0.010944976595089893, 9.501967457570808, 59.42545504627359, 1.61, 0.24830271129800302]
+Loading required package: lattice
+Loading required package: ggplot2
+Registered S3 methods overwritten by 'ggplot2':
+  method         from 
+  [.quosures     rlang
+  c.quosures     rlang
+  print.quosures rlang
+randomForest 4.6-14
+Type rfNews() to see new features/changes/bug fixes.
+
+Attaching package: 'randomForest'
+
+The following object is masked from 'package:ggplot2':
+
+    margin
+
+       1 
+16.79026 
+Warning message:
+In read.table(file = file, header = header, sep = sep, quote = quote,  :
+  incomplete final line found by readTableHeader on '../results/model_input_chr8_CH.csv'
+edtest

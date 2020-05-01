@@ -1,0 +1,14 @@
+#Fill out the parameters below (do not use quotes). 
+#More detailed explanation of variables can be found 
+#in the README file.
+
+#run parameters
+threads = 16
+runReapr = yes
+bam_file_provided = no
+location_of_bam = ../data/out_reapr_chr8_CH.bam
+location_of_reapr = /usr/src/app/code/Reapr_1.0.18_for_Evaldna/reapr
+location_of_samtools = samtools
+paired_end_reads_1 = ../data/chr8_reads_1.fq
+paired_end_reads_2 = ../data/chr8_reads_2.fq
+sample_map_read_number = 50
