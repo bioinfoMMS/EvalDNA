@@ -20,7 +20,7 @@ done
 outputdir=$1 #store user provided output directory name to $outputdir
 if [ -d "$1" ]; then
 	cd $outputdir #change directory to provided output directory
-	files=$(ls *.txt) #store all text files (*.txt) in the output directory in the $files variable
+	files=$(ls *_final_score.txt) #store all final score text files (*_final_score.txt) in the output directory in the $files variable
 
 	for f in $files #loop through the $files array
 	do

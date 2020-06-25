@@ -133,10 +133,22 @@ Multiple runs of EvalDNA and the scoring model can be listed as one 'CMD' in the
 	Rscript run_mammalian_model_v1.1.R ../results/model_input_genome2.csv
 
 
+Once you have multiple final score files (either from one run or multiple), you can run the provided script 'process_multiple_scores.sh' to create a summary report of the genome assemblies and their corresponding scores. This script takes a directory as input, where the directory needs to contain the EvalDNA final score files you want in the report. 
+
+For example, if you have your output score files in a directory called EvalDNA_results, you can run the following which will create a summary report file.
+
+	bash process_multiple_scores.sh EvalDNA_results > EvalDNA_summary_report.txt
+
+
+
 Optional: Creating your own model
 ----------
 
-If you would like to create you own model, say on training data from plants rather than mammals, the metric calculation portion of EvalDNA can be used to collect quality metrics of the instances in the training data. We provide a bash script to score training instances as well which requires the assembly/assembled sequence of interest and a reference sequence. Further processing of the scores may need be required such as the scaling described in the EvalDNA publication. Once the training data is collected, models can be trained and tested within R (see an example in EvalDNA_Model_Creation_Example.html). The user created model can be saved as '.rds' file and used in place of the provided model.
+If you would like to create you own model, say on training data from plants rather than mammals, the metric calculation portion of EvalDNA can be used to collect quality metrics of the instances in the training data. We provide a bash script to score training instances as well which requires the assembly/assembled sequence of interest and a reference sequence. Further processing of the scores may need be required such as the scaling described in the EvalDNA publication. 
+
+Once the training data is collected, models can be trained and tested within R (see an example in EvalDNA_Model_Creation_Example.html). 
+
+The user created model can be saved as '.rds' file and used in place of the provided model.
 
 The following command can be used to score a training data instance:
 
