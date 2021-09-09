@@ -9,10 +9,25 @@ EvalDNA requires Python v2.7.13, Perl v5.24.3 or later, and R statistical softwa
 
 Installation
 ----------
-EvalDNA is provided as a Docker container and has been tested on a Unix/Linux environment. To get started, download or clone this repository. 
+EvalDNA is provided as a Docker container and has been tested on a Unix/Linux environment. We provide two ways to install EvalDNA via Docker. The easiest option (option 1) is to simply pull an existing Docker o,age of a container with all requirement pre-installed. The 2nd option is to build the EvalDNA container from the provided Dockerfile.** To get started with either option, download or clone this repository. ** 
+
+Option 1: Using an Existing Docker Image
+----------
+A full Docker image is provided on DockerHub at https://hub.docker.com/r/bioinfomms/evaldna with all prequisites installed. The most current image can be pulled using the command:
+
+	docker pull bioinfomms/evaldna
+	
+Once the image is pulled, you need to put your input data in the 'EvalDNAv1.1/data' directory. The github repository contains example data in this folder to get you started.  you need to run the following command:
+
+	docker run -it -u $(id -u):$(id -g) -v /location/of/EvalDNAv1.1/results:/usr/src/app/results -v /location/of/EvalDNAv1.1/code:/usr/src/app/code -v /location/of/EvalDNAv1.1/data:/usr/src/app/data --cpus="16" evaldna
 
 
-Building and Running Docker for EvalDNA
+	
+
+Now you can interactively run commands on the Docker container where everything has been installed for you. 
+
+
+Option 2: Building and Running Docker for EvalDNA
 ----------
 After editing the Dockerfile to provide your input into EvalDNA (explained below), run the following commands:
 
@@ -22,7 +37,7 @@ After editing the Dockerfile to provide your input into EvalDNA (explained below
 	sudo docker container rm --force edtest #Removes the docker container when finished
 
 
-Usage
+Usage 
 ----------
 
 The current version of EvalDNA is listed in the EvalDNA_v1.1 directory.  
@@ -95,13 +110,13 @@ model_input_prefix.csv - comma-separated list of quality metrics to be submitted
 
 Scoring the output
 ----------
-Once EvalDNA has finished and produced the training_metrics_prefix.csv file, you can submit the CSV file to an R script (.R file) that will apply a model designed in R (.rds file). 
+Once EvalDNA has finished and produced the model_input_<outputfile>.csv file, you can submit the CSV file to an R script (.R file) that will apply a model designed in R (.rds file). 
 
 We provide a well-tested model that was trained on mammalian genome assembly data. 
 
 The following command is included in the Dockerfile to run the provided model:
 
-	Rscript run_mammalian_model_v1.1.R ../results/training_metrics_prefix.csv
+	Rscript run_mammalian_model_v1.1.R ../results/model_input_<outputfile>.csv
 	
 More details on the model can be found in the EvalDNA manuscript once it is published.
 
