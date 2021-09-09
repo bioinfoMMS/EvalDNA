@@ -9,58 +9,25 @@ EvalDNA requires Python v2.7.13, Perl v5.24.3 or later, and R statistical softwa
 
 Installation
 ----------
-EvalDNA is provided as a Docker container and has been tested on a Unix/Linux environment. We provide two ways to install EvalDNA via Docker. The easiest option (option 1) is to simply pull an existing Docker o,age of a container with all requirement pre-installed. The 2nd option is to build the EvalDNA container from the provided Dockerfile.** To get started with either option, download or clone this repository. ** 
+EvalDNA is provided as a Docker container and has been tested on a Unix/Linux environment. We provide two ways to install EvalDNA via Docker. The easiest option is to simply pull an existing Docker image of a container with all requirements pre-installed. The 2nd option is to build the EvalDNA container from the provided Dockerfile.** To get started with either option, download or clone this repository. ** 
 
-Option 1: Using an Existing Docker Image
+
+Getting Started
 ----------
-A full Docker image is provided on DockerHub at https://hub.docker.com/r/bioinfomms/evaldna with all prequisites installed. The most current image can be pulled using the command:
+The current version of EvalDNA is located in the EvalDNA_v1.1 directory.  
 
-	docker pull bioinfomms/evaldna
+Two subdirectories are provided named code and data. Move into the EvalDNA_v1.1 directory and use the 'mkdir' command to create a directory with EvalDNA_v1.1 called 'results'.
+
+	cd EvalDNA_v1.1
+	mkdir results
 	
-Once the image is pulled, you need to put your input data in the 'EvalDNAv1.1/data' directory. The github repository contains example data in this folder to get you started.  you need to run the following command:
-
-	docker run -it -u $(id -u):$(id -g) -v /location/of/EvalDNAv1.1/results:/usr/src/app/results -v /location/of/EvalDNAv1.1/code:/usr/src/app/code -v /location/of/EvalDNAv1.1/data:/usr/src/app/data --cpus="16" evaldna
-
-
-	
-
-Now you can interactively run commands on the Docker container where everything has been installed for you. 
-
-
-Option 2: Building and Running Docker for EvalDNA
-----------
-After editing the Dockerfile to provide your input into EvalDNA (explained below), run the following commands:
-
-	cd EvalDNA_v1.1 
-	sudo docker build -t evaldna_test . #builds Docker container called 'evaldna_test'
-	sudo docker run -t -u $(id -u):$(id -g) -v /location/of/EvalDNAv1.1/results:/usr/src/app/results -v /location/of/EvalDNA_v1.1/code:/usr/src/app/code -v /location/of/EvalDNA_v1.1/data:/usr/src/app/data --name edtest -t --cpus="16" evaldna_test #runs the 'evaldna_test' Docker instance with 16 cpus and the three directories (code, data, and results) mounted.
-	sudo docker container rm --force edtest #Removes the docker container when finished
-
-
-Usage 
-----------
-
-The current version of EvalDNA is listed in the EvalDNA_v1.1 directory.  
-
-Two subdirectories are provided named code and data. Use the 'mkdir' command to create a directory with EvalDNA_v1.1 called 'results'. These directories are mounted when running the Dockerfile so that any files in these folders can be accesssed by EvalDNA on a Docker instance.
+The 'code', 'data', and 'results' directories are mounted when running the Dockerfile so that any files in these folders can be accesssed by EvalDNA on a Docker instance.
  
 The code directory contains the EvalDNA python script, the code for the R model, REAPR which is one of the tools EvalDNA executes, and the code to run the R model. 
 
-The data directory contains sample data to get started with EvalDNA as well as the config file required to run EvalDNA. 
+The data directory contains sample data to get started with EvalDNA as well as the config file required to run EvalDNA. This is where your input files (see "Input" section) should be located before running EvalDNA on your assembly of interest.  
 
 The results directory you created will be where the files produced by EvalDNA, including the final quality score output, will be saved as EvalDNA is running. If rerunning EvalDNA using the same prefix as a run before, make sure to remove existing files using that prefix from results including the 'prefix.pipeline' to avoid errors. 
-
-The Dockerfile is provided in the EvalDNA_v1.1 directory. Running this, installs all required prequisites and runs the EvalDNA python command within the 'code' directory. This command is listed in the 'CMD' line in the Dockerfile, which is the only line of the Dockerfile you will need to edit. 
-
-	python EvalDNA_v1.1.py -i ../data/inputfile.fa -o outputfile -c ../data/configfile.txt
-
-All three arguments are mandatory where:  
-
-inputfile.fa is the assembly FASTA file
-
-outputfile is the prefix that will be used to name the output metrics file
-
-configfile.txt is a config file of parameters (see config file section below) and where you provide the location of the sequencing reads
 
 
 Input
@@ -108,20 +75,70 @@ prefix.facheck.fa - the checked FASTA file
 model_input_prefix.csv - comma-separated list of quality metrics to be submitted to the scoring model
 
 
+Usage - Option 1: Using an Existing Docker Image
+----------
+A full Docker image is provided on DockerHub at https://hub.docker.com/r/bioinfomms/evaldna with all prequisites installed. The most current image can be pulled using the command:
+
+	docker pull bioinfomms/evaldna
+
+Once the Docker image has been pulled and the 'results' directory has been created as explained above, you need to run the following command to mount the 'data', 'results', and 'code' directories and run the image:
+
+	docker run -it -u $(id -u):$(id -g) -v /location/of/EvalDNAv1.1/results:/usr/src/app/results -v /location/of/EvalDNAv1.1/code:/usr/src/app/code -v /location/of/EvalDNAv1.1/data/usr/src/app/data --cpus="16" evaldna
+
+Now you can interactively run commands on the Docker container where everything has been installed for you. To run the metric calculation portion of the pipeline, type:
+
+	python code/EvalDNA_v1.1.py -i data/inputfile.fa -o outputfile -c data/configfile.txt
+
+All three arguments are mandatory where:  
+
+inputfile.fa is the assembly FASTA file to be scored
+
+outputfile will be used to name the output metrics file
+
+configfile.txt is a config file of parameters (see config file section below) and where you provide the location of the sequencing reads
+
+If this worked for you, you can skip the next section and jump to "Scoring the Output"
+
+
+Usage - Option 2: Building and Running Docker for EvalDNA
+----------
+
+Another way to run EvalDNA is to use the provided Dockerfile (in the EvalDNA_v1.1 directory) to build the container and run EvalDNA. The Dockerfile contains the instructions to install all of the required prequisites and also runs the EvalDNA python command within the 'code' directory. This command is listed in the 'CMD' line in the Dockerfile, which is the only line of the Dockerfile you will need to edit. 
+
+	python EvalDNA_v1.1.py -i ../data/inputfile.fa -o outputfile -c ../data/configfile.txt
+
+All three arguments are mandatory where:  
+
+inputfile.fa is the assembly FASTA file
+
+outputfile is the prefix that will be used to name the output metrics file
+
+configfile.txt is a config file of parameters (see config file section below) and where you provide the location of the sequencing reads
+
+After editing the Dockerfile to provide your input into EvalDNA, run the following commands:
+
+	cd EvalDNA_v1.1 
+	sudo docker build -t evaldna . #builds Docker container called 'evaldna'
+	sudo docker run -t -u $(id -u):$(id -g) -v /location/of/EvalDNAv1.1/results:/usr/src/app/results -v /location/of/EvalDNA_v1.1/code:/usr/src/app/code -v /location/of/EvalDNA_v1.1/data:/usr/src/app/data --name edtest -t --cpus="16" evaldna #runs the 'evaldna' Docker instance with 16 cpus and the three directories (code, data, and results) mounted.
+	sudo docker container rm --force edtest #Removes the docker container when finished
+
+
 Scoring the output
 ----------
 Once EvalDNA has finished and produced the model_input_<outputfile>.csv file, you can submit the CSV file to an R script (.R file) that will apply a model designed in R (.rds file). 
 
 We provide a well-tested model that was trained on mammalian genome assembly data. 
 
-The following command is included in the Dockerfile to run the provided model:
-
+If going through Usage - Option 1, run the following command on the image:
+	
 	Rscript run_mammalian_model_v1.1.R ../results/model_input_<outputfile>.csv
 	
-More details on the model can be found in the EvalDNA manuscript once it is published.
+If going through Usage - Option 2, the command above is included in the Dockerfile to automatically run the provided model.
+
+More details on the provided model can be found in the EvalDNA manuscript once it is published.
 
 
-Sample Data
+**Sample Data**
 ----------
 
 Sample data (Chinese hamster chromosome 8, sequencing reads from the Chinese hamster, and a BAM file of the reads mapped to chromosome 8) are provided in the data directory along with a config.txt file. 
@@ -137,7 +154,7 @@ Once completed, there will a new file in the 'results' directory called 'chr8_CH
 Note: The sample data is provided to make sure you can run EvalDNA. The amount of reads in the sample data is much less (1.55x) than the 10x coverage required to run EvalDNA to get an accurate quality score.  
 
 
-Running Multiple Assemblies
+**Running Multiple Assemblies**
 ----------
 Multiple runs of EvalDNA and the scoring model can be listed as one 'CMD' in the Dockerfile. For example:
 
@@ -156,7 +173,7 @@ For example, if you have your output score files in a directory called EvalDNA_r
 
 
 
-Optional: Creating your own model
+**Optional: Creating your own model**
 ----------
 
 If you would like to create you own model, say on training data from plants rather than mammals, the metric calculation portion of EvalDNA can be used to collect quality metrics of the instances in the training data. We provide a bash script to score training instances as well which requires the assembly/assembled sequence of interest and a reference sequence. Further processing of the scores may need be required such as the scaling described in the EvalDNA publication. 
@@ -175,7 +192,7 @@ Once a R model is created, it should be added to the code directory.
 
 Within the Dockerfile, the 'Rscript run_mammalian_model_v1.1.R ../results/model_input_prefix.csv' command should be changed to 'Rscript your_model_name.R ../results/model_input_prefix.csv'. 
 
-Troubleshooting
+**Troubleshooting**
 ----------
 
 List of errors you may see and what they mean.
