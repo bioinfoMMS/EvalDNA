@@ -4,7 +4,7 @@ EvalDNA (Evaluation of *De Novo* Assemblies) uses machine-learning methods to in
 
 Prequisites
 ----------
-EvalDNA requires Python v2.7.13, Perl v5.24.3 or later, and R statistical software v3.5.1 or later. Prequisites are provided within the Docker instance and do not need to be installed separately.
+EvalDNA requires Python v2.7.13, Perl v5.24.3 or later, and R statistical software v3.5.1 or later. Prequisites are provided within the Docker instance and do not need to be installed separately. EvalDNA has been tested on Docker version 18.09.8. To install Docker, please read the installation instructions at https://docs.docker.com/get-docker/ for your platform. Docker documentation is provided at https://docs.docker.com/.
 
 
 Installation
