@@ -4,7 +4,7 @@ EvalDNA (Evaluation of *De Novo* Assemblies) uses machine-learning methods to in
 
 Prequisites
 ----------
-EvalDNA requires Python v2.7.13, Perl v5.24.3 or later, and R statistical software v3.5.1 or later. Prequisites are provided within the Docker instance and do not need to be installed separately. EvalDNA has been tested on Docker version 18.09.8. To install Docker, please read the installation instructions at https://docs.docker.com/get-docker/ for your platform. Docker documentation is provided at https://docs.docker.com/.
+EvalDNA requires Python v2.7.13, Perl v5.24.3 or later, and R statistical software v3.5.1 or later. Prequisites are provided within the Docker instance and do not need to be installed separately. EvalDNA has been tested on Docker version 18.09.8. To install Docker, please read the installation instructions at https://docs.docker.com/get-docker/ for your platform. Docker documentation is provided at https://docs.docker.com/ with a nice description of the basics and terminology provided at https://docs.docker.com/get-started/overview/.
 
 
 Installation
@@ -89,13 +89,13 @@ Once the Docker image has been pulled and the 'results' directory has been creat
 
 Now you can interactively run commands on the Docker container where everything has been installed for you. To run the metric calculation portion of the pipeline, type:
 
-	python code/EvalDNA_v1.1.py -i data/inputfile.fa -o outputfile -c data/configfile.txt
+	python code/EvalDNA_v1.1.py -i data/inputfile.fa -o outputfile_prefix -c data/configfile.txt
 
 All three arguments are mandatory where:  
 
 inputfile.fa is the assembly FASTA file to be scored
 
-outputfile will be used to name the output metrics file
+outputfile_prefix is the prefix that will be used to name the output files
 
 configfile.txt is a config file of parameters (see config file section below) and where you provide the location of the sequencing reads
 
@@ -107,13 +107,13 @@ Usage - Option 2: Building and Running Docker for EvalDNA
 
 Another way to run EvalDNA is to use the provided Dockerfile (in the EvalDNA_v1.1 directory) to build the container and run EvalDNA. The Dockerfile contains the instructions to install all of the required prequisites and also runs the EvalDNA python command within the 'code' directory. This command is listed in the 'CMD' line in the Dockerfile, which is the only line of the Dockerfile you will need to edit. 
 
-	python EvalDNA_v1.1.py -i ../data/inputfile.fa -o outputfile -c ../data/configfile.txt
+	python EvalDNA_v1.1.py -i ../data/inputfile.fa -o outputfile_prefix -c ../data/configfile.txt
 
 All three arguments are mandatory where:  
 
 inputfile.fa is the assembly FASTA file
 
-outputfile is the prefix that will be used to name the output metrics file
+outputfile_prefix is the prefix that will be used to name the output files
 
 configfile.txt is a config file of parameters (see config file section below) and where you provide the location of the sequencing reads
 
@@ -167,7 +167,7 @@ Multiple runs of EvalDNA and the scoring model can be listed as one 'CMD' in the
 	Rscript run_mammalian_model_v1.1.R ../results/model_input_genome2.csv
 
 
-Once you have multiple final score files (either from one run or multiple), you can run the provided script 'process_multiple_scores.sh' to create a summary report of the genome assemblies and their corresponding scores. This script takes a directory as input, where the directory needs to contain the EvalDNA final score files you want in the report. 
+Once you have multiple final score files, you can run the provided script 'process_multiple_scores.sh' to create a summary report of the genome assemblies and their corresponding scores. This script takes a directory as input, where the directory needs to contain the EvalDNA final score files you want in the report. 
 
 For example, if you have your output score files in a directory called EvalDNA_results, you can run the following which will create a summary report file.
 
