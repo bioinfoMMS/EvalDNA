@@ -11,6 +11,8 @@ Installation
 ----------
 EvalDNA is provided as a Docker container and has been tested on a Unix/Linux environment. We provide two ways to install EvalDNA via Docker. The easiest option is to simply pull an existing Docker image of a container with all requirements pre-installed. The 2nd option is to build the EvalDNA container from the provided Dockerfile.** To get started with either option, download or clone this repository. ** 
 
+Note: The EvalDNA repository requires 2.9 GB of space and the Docker image for EvalDNA requires an additional 2.93 GB of space. 
+
 
 Getting Started
 ----------
