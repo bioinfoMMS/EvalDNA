@@ -88,6 +88,7 @@ Once the Docker image has been pulled and the 'results' directory has been creat
 	docker run -it -u $(id -u):$(id -g) -v /location/of/EvalDNA_v1.1/results:/usr/src/app/results -v /location/of/EvalDNA_v1.1/code:/usr/src/app/code -v /location/of/EvalDNA_v1.1/data:/usr/src/app/data --cpus="16" bioinfomms/evaldna
 
 Now you can interactively run commands on the Docker container where everything has been installed for you. To run the metric calculation portion of the pipeline, type:
+	
 	cd code
 	python EvalDNA_v1.1.py -i data/inputfile.fa -o outputfile_prefix -c data/configfile.txt
 
