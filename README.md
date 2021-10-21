@@ -85,11 +85,11 @@ A full Docker image is provided on DockerHub at https://hub.docker.com/r/bioinfo
 
 Once the Docker image has been pulled and the 'results' directory has been created as explained above, you need to run the following command to mount the 'data', 'results', and 'code' directories and run the image:
 
-	docker run -it -u $(id -u):$(id -g) -v /location/of/EvalDNAv1.1/results:/usr/src/app/results -v /location/of/EvalDNAv1.1/code:/usr/src/app/code -v /location/of/EvalDNAv1.1/data/usr/src/app/data --cpus="16" evaldna
+	docker run -it -u $(id -u):$(id -g) -v /location/of/EvalDNA_v1.1/results:/usr/src/app/results -v /location/of/EvalDNA_v1.1/code:/usr/src/app/code -v /location/of/EvalDNA_v1.1/data:/usr/src/app/data --cpus="16" bioinfomms/evaldna
 
 Now you can interactively run commands on the Docker container where everything has been installed for you. To run the metric calculation portion of the pipeline, type:
-
-	python code/EvalDNA_v1.1.py -i data/inputfile.fa -o outputfile_prefix -c data/configfile.txt
+	cd code
+	python EvalDNA_v1.1.py -i data/inputfile.fa -o outputfile_prefix -c data/configfile.txt
 
 All three arguments are mandatory where:  
 
@@ -145,7 +145,12 @@ More details on the provided model can be found in the EvalDNA manuscript once i
 
 Sample data (Chinese hamster chromosome 8, sequencing reads from the Chinese hamster, and a BAM file of the reads mapped to chromosome 8) are provided in the data directory along with a config.txt file. 
 
-The Dockerfile provided with EvalDNA is set up to use this data and config file to estimate the quality score for chromosome 8 of the Chinese hamster reference genome.
+The Dockerfile provided with EvalDNA is set up to use this data and config file to estimate the quality score for chromosome 8 of the Chinese hamster reference genome. Make sure to uncompress the chromosome 8 FASTQ files before running:
+	
+	cd data
+	gunzip chr8_reads_1.fq.gz
+	gunzip chr8_reads_2.fq.gz
+	cd ../
 
 Scoring chromosome 8 with 16 processors takes about 1 hour and 15 mins if reads needs to be mapped to the assembly being scored. 
 
