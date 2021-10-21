@@ -137,7 +137,7 @@ If going through Usage - Option 1, run the following command on the image:
 	
 If going through Usage - Option 2, the command above is included in the Dockerfile to automatically run the provided model.
 	
-After running the R script, the final score file (<outputfile_prefix>_final_score.txt) can be found in the results directory. 
+After running the R script, the final score file (<outputfile_prefix>_final_score.txt) can be found in the 'results' directory. 
 
 More details on the provided model can be found in the EvalDNA manuscript once it is published.
 
