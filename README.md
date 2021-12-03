@@ -140,7 +140,7 @@ If going through Usage - Option 2, the command above is included in the Dockerfi
 	
 After running the R script, the final score file (<outputfile_prefix>_final_score.txt) can be found in the 'results' directory. 
 
-More details on the provided model can be found in the EvalDNA manuscript once it is published.
+More details on the provided model can be found in the EvalDNA manuscript (https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-021-04480-2).
 
 
 **Sample Data**
