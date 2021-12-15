@@ -29,7 +29,7 @@ The code directory contains the EvalDNA python script, the code for the R model,
 
 The data directory contains sample data to get started with EvalDNA as well as the config file required to run EvalDNA. This is where your input files (see "Input" section) should be located before running EvalDNA on your assembly of interest.  
 
-The results directory you created will be where the files produced by EvalDNA, including the final quality score output, will be saved as EvalDNA is running. If rerunning EvalDNA using the same prefix as a run before, make sure to remove existing files using that prefix from results including the 'prefix.pipeline' to avoid errors. 
+The results directory you created will be where the files produced by EvalDNA, including the final quality score output, will be saved as EvalDNA is running. **If rerunning EvalDNA using the same prefix as a run before, make sure to remove existing files using that prefix from results including the 'prefix.pipeline' directoy to avoid errors. REAPR will throw an error if the 'prefix.pipeline' directory already exists.**
 
 
 Input
